@@ -1,0 +1,90 @@
+{
+  "management": [
+    {
+      "name": "Ionela OLAR",
+      "role": "Coordonator General",
+      "image": {
+        "base": "assets/img/echipa/ionela-olar",
+        "alt": "Ionela Olar, coordonator general WSU"
+      }
+    },
+    {
+      "name": "Eduard BELINSCHI",
+      "role": "Responsabil IT & Logistică",
+      "image": {
+        "base": "assets/img/echipa/eduard-belinschi",
+        "alt": "Eduard Belinschi, responsabil IT și logistică WSU"
+      }
+    },
+    {
+      "name": "Deborah SZEKELYHIDI",
+      "role": "Secretar General",
+      "image": {
+        "base": "assets/img/echipa/deborah-szekelyhidi",
+        "alt": "Deborah Szekelyhidi, secretar general WSU"
+      }
+    },
+    {
+      "name": "Maria SAIOC",
+      "role": "Responsabil Program și Caravană",
+      "image": {
+        "base": "assets/img/echipa/maria-saioc",
+        "alt": "Maria Saioc, responsabil program și caravană WSU"
+      }
+    },
+    {
+      "name": "Ecaterina CORBU",
+      "role": "Președinte OSUT",
+      "image": {
+        "base": "assets/img/echipa/ecaterina-corbu",
+        "alt": "Ecaterina Corbu, președinte OSUT"
+      }
+    },
+    {
+      "name": "Bianca DRILĂ",
+      "role": "Responsabil Relații Publice",
+      "image": {
+        "base": "assets/img/echipa/bianca-drila",
+        "alt": "Bianca Drilă, responsabil relații publice WSU"
+      }
+    },
+    {
+      "name": "Miruna SUCIU",
+      "role": "Responsabil Resurse Umane",
+      "image": {
+        "base": "assets/img/echipa/miruna-suciu",
+        "alt": "Miruna Suciu, responsabil resurse umane WSU"
+      }
+    },
+    {
+      "name": "Anastasia SAS",
+      "role": "Responsabil Imagine",
+      "image": {
+        "base": "assets/img/echipa/anastasia-sas",
+        "alt": "Anastasia Sas, responsabil imagine WSU"
+      }
+    },
+    {
+      "name": "Amalia JIV",
+      "role": "Responsabil Fundraising",
+      "image": {
+        "base": "assets/img/echipa/amalia-jiv",
+        "alt": "Amalia Jiv, responsabil fundraising WSU"
+      }
+    }
+  ],
+  "coordinators": [
+    "Coordonator Facultatea de Arte și Design",
+    "Coordonator Facultatea de Chimie, Biologie, Geografie",
+    "Coordonator Facultatea de Drept",
+    "Coordonator Facultatea de Economie și Administrare a Afacerilor",
+    "Coordonator Facultatea de Educație Fizică și Sport",
+    "Coordonator Facultatea de Matematică și Informatică",
+    "Coordonator Facultatea de Muzică și Teatru",
+    "Responsabil Echipa de Intervenție"
+  ],
+  "placeholderImage": {
+    "base": "assets/img/echipa/coordonator-placeholder",
+    "alt": "Coordonator WSU în curând"
+  }
+}

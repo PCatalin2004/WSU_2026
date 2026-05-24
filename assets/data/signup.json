@@ -1,0 +1,58 @@
+{
+  "formUrl": "https://forms.osut.ro/form-6922087/formular-de-inscriere-participanti-wsu-2026",
+  "period": "23.07.2026 - 08.08.2026",
+  "deadline": "15 mai 2026, ora 23:59",
+  "documents": [
+    {
+      "label": "Formular consimțământ participant",
+      "href": "https://docs.google.com/document/d/153eWv5Tkqk9DI0gfAB8X6mT6rDUkqmMv/edit",
+      "icon": "file-text"
+    },
+    {
+      "label": "Formular consimțământ părinte",
+      "href": "https://docs.google.com/document/d/1Hg2p8H8mTh1DRRi0azixYB3i6YSlHc7u/edit",
+      "icon": "file-text"
+    },
+    {
+      "label": "Regulament integral",
+      "href": "https://drive.google.com/file/d/1B9OtXwTuMP6W7JfhxtRJBj37CZR-JMA9/edit",
+      "icon": "book-open"
+    }
+  ],
+  "steps": [
+    {
+      "title": "Completează formularul",
+      "text": "Alege facultatea, răspunde atent și verifică datele de contact."
+    },
+    {
+      "title": "Așteaptă selecția",
+      "text": "Participanții selectați sunt anunțați prin e-mail și confirmă locul prin chestionarul primit."
+    },
+    {
+      "title": "Trimite documentele",
+      "text": "Acordurile semnate și dovada taxei sunt trimise conform instrucțiunilor organizatorilor."
+    },
+    {
+      "title": "Pregătește-ți vara",
+      "text": "Eliberează-ți perioada proiectului și vino la Timișoara cu chef de descoperit."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Cine se poate înscrie?",
+      "answer": "Proiectul este dedicat elevilor de liceu care vor să descopere viața de student și oferta educațională UVT."
+    },
+    {
+      "question": "Cum confirm participarea?",
+      "answer": "După selecție, confirmarea se face prin chestionarul trimis de organizatori și prin documentele solicitate."
+    },
+    {
+      "question": "Pot beneficia de gratuitate?",
+      "answer": "Da, elevii din medii dezavantajate pot solicita gratuitate dacă transmit detalii și documente justificative relevante."
+    },
+    {
+      "question": "Ce documente trebuie pregătite?",
+      "answer": "Formularul de consimțământ, acordul părintelui pentru minori și regulamentul proiectului sunt disponibile în secțiunea de documente."
+    }
+  ]
+}

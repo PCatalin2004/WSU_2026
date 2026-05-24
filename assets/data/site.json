@@ -1,0 +1,93 @@
+{
+  "brand": {
+    "name": "West Summer University",
+    "shortName": "WSU",
+    "logo": "assets/img/brand/wsu-mark-180.webp",
+    "logoAlt": "West Summer University"
+  },
+  "navigation": [
+    {
+      "label": "Prima Pagină",
+      "href": "index.html"
+    },
+    {
+      "label": "Noutăți",
+      "href": "noutati.html"
+    },
+    {
+      "label": "Echipă",
+      "href": "echipa.html"
+    },
+    {
+      "label": "Facultăți",
+      "href": "facultati.html"
+    },
+    {
+      "label": "Galerie",
+      "href": "galerie.html"
+    },
+    {
+      "label": "Înscrie-te!",
+      "href": "inscrie-te.html"
+    }
+  ],
+  "headerAction": {
+    "label": "Înscrie-te",
+    "href": "inscrie-te.html"
+  },
+  "footer": {
+    "projectLabel": "Proiect marca",
+    "osut": {
+      "href": "https://osut.ro/",
+      "logo": "assets/img/brand/osut-logo-black.webp",
+      "alt": "OSUT"
+    },
+    "partnersLabel": "Parteneri",
+    "partners": [
+      {
+        "src": "assets/img/partners/partner-logo-uvt.webp",
+        "alt": "Partener WSU"
+      },
+      {
+        "src": "assets/img/partners/partner-logo-02.webp",
+        "alt": "Partener WSU"
+      },
+      {
+        "src": "assets/img/partners/partner-logo-03.webp",
+        "alt": "Partener WSU"
+      },
+      {
+        "src": "assets/img/partners/partner-logo-04.webp",
+        "alt": "Partener WSU"
+      }
+    ],
+    "contactLabel": "Contact",
+    "address": "Bulevardul Vasile Pârvan nr. 4<br>Etaj 2, camera 247",
+    "social": [
+      {
+        "label": "Facebook",
+        "href": "https://www.facebook.com/WestSummerUniversity",
+        "icon": "facebook"
+      },
+      {
+        "label": "Instagram",
+        "href": "https://www.instagram.com/westsummeruniversity/",
+        "icon": "instagram"
+      },
+      {
+        "label": "Mail",
+        "href": "mailto:wsu@osut.ro",
+        "icon": "mail"
+      },
+      {
+        "label": "TikTok",
+        "href": "https://www.tiktok.com/@westsummeruniversity",
+        "icon": "music-2"
+      }
+    ]
+  },
+  "cookie": {
+    "text": "Prin politica noastră de confidențialitate vi se respectă dreptul la informare cu privire la prelucrarea datelor de către West Summer University.",
+    "button": "Accept"
+  }
+}

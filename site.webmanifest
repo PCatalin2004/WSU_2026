@@ -1,0 +1,22 @@
+﻿{
+  "name": "West Summer University",
+  "short_name": "WSU",
+  "description": "Școala de vară care le arată elevilor cum se simte viața de student la Universitatea de Vest din Timișoara.",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#087bd3",
+  "icons": [
+    {
+      "src": "assets/img/icons/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/img/icons/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}
+

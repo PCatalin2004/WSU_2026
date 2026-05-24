@@ -1,0 +1,72 @@
+[
+  {
+    "tag": "CeaMaiTareVară26",
+    "title": "Au început înscrierile pentru West Summer University (WSU) 2026!",
+    "summary": "Se apropie #CeaMaiTareVară26 cu pași grăbiți, iar echipa WSU a pregătit activități, ateliere și surprize care ajută elevii să descopere viața de student.",
+    "href": "https://wsu.osut.ro/au-inceput-inscrierile-pentru-west-summer-university-wsu-2026/",
+    "image": {
+      "base": "assets/img/noutati/inscrieri-wsu-2026",
+      "alt": "Afiș înscrieri West Summer University 2026"
+    }
+  },
+  {
+    "tag": "Noutăți",
+    "title": "Au început înscrierile pentru West Summer University (WSU) 2025!",
+    "summary": "Elevii curioși de viața universitară au avut ocazia să aleagă un domeniu, să participe la ateliere și să descopere Timișoara prin ochi de student.",
+    "href": "https://wsu.osut.ro/au-inceput-inscrierile-pentru-west-summer-university-wsu-2025-2/",
+    "image": {
+      "base": "assets/img/noutati/inscrieri-wsu-2025",
+      "alt": "Afiș înscrieri West Summer University 2025"
+    }
+  },
+  {
+    "tag": "CeaMaiTareVară24",
+    "title": "Au început înscrierile pentru West Summer University (WSU) 2024!",
+    "summary": "O nouă ediție a adus elevii mai aproape de oferta educațională UVT, cu ateliere, activități și experiențe memorabile.",
+    "href": "https://wsu.osut.ro/au-inceput-inscrierile-pentru-west-summer-university-wsu-2024/",
+    "image": {
+      "base": "assets/img/noutati/inscrieri-wsu-2024",
+      "alt": "Identitate vizuală WSU 2024"
+    }
+  },
+  {
+    "tag": "Info utile",
+    "title": "Voluntari externi WSU",
+    "summary": "Voluntarii externi sunt o parte importantă din povestea WSU, iar selecțiile au fost publicate pentru edițiile precedente.",
+    "href": "https://wsu.osut.ro/lista-voluntari-externi/",
+    "image": {
+      "base": "assets/img/noutati/voluntari-externi-wsu",
+      "alt": "Imagine pentru voluntari externi WSU"
+    }
+  },
+  {
+    "tag": "CeaMaiTareVară23",
+    "title": "Au început înscrierile pentru West Summer University (WSU) 2023!",
+    "summary": "Proiectul a continuat tradiția verilor petrecute în campus, în laboratoare și în comunitatea studențească UVT.",
+    "href": "https://wsu.osut.ro/au-inceput-inscrierile-pentru-west-summer-university-2023/",
+    "image": {
+      "base": "assets/img/noutati/inscrieri-wsu-2023",
+      "alt": "Afiș înscrieri West Summer University 2023"
+    }
+  },
+  {
+    "tag": "CeaMaiTareVară22",
+    "title": "Au început înscrierile pentru West Summer University 2022!",
+    "summary": "Ediția 2022 a pus accent pe siguranță, comunitate și experiențe care simulează viața de student.",
+    "href": "https://wsu.osut.ro/au-inceput-inscrierile-pentru-west-summer-university-2022/",
+    "image": {
+      "base": "assets/img/noutati/inscrieri-wsu-2022",
+      "alt": "Afiș înscrieri West Summer University 2022"
+    }
+  },
+  {
+    "tag": "Online",
+    "title": "Începe cea mai tare experiență online!",
+    "summary": "O ediție adaptată contextului online, cu aceeași energie de proiect și cu activități gândite pentru elevi curioși.",
+    "href": "https://wsu.osut.ro/incepe-cea-mai-tare-experienta-online/",
+    "image": {
+      "base": "assets/img/noutati/experienta-online-wsu",
+      "alt": "Afiș experiență online WSU"
+    }
+  }
+]
