@@ -5,7 +5,7 @@
     "description": "Participanții își pot exterioriza talentul și imaginația prin ateliere practice de fotografie, pictură, ceramică și grafică.",
     "image": {
       "base": "assets/img/facultati/facultate-arte-design",
-      "alt": "Atelier de arte și design la WSU"
+      "alt": "FAD"
     }
   },
   {
@@ -14,7 +14,7 @@
     "description": "Chimia, Biologia și Geografia devin experiențe practice: experimente, determinări clinice și activități care pun orașul pe hartă.",
     "image": {
       "base": "assets/img/facultati/facultate-chimie-biologie-geografie",
-      "alt": "Activitate de chimie, biologie și geografie la WSU"
+      "alt": "CBG"
     }
   },
   {
@@ -23,7 +23,7 @@
     "description": "Elevii descoperă noțiuni despre drepturi, obligații, internet, responsabilitate și situații juridice discutate aplicat.",
     "image": {
       "base": "assets/img/facultati/facultate-drept",
-      "alt": "Activitate pentru Facultatea de Drept la WSU"
+      "alt": "FD"
     }
   },
   {
@@ -32,7 +32,7 @@
     "description": "De la ideea de afacere la marketing, contabilitate, microeconomie și macroeconomie, participanții văd cum se construiește un business.",
     "image": {
       "base": "assets/img/facultati/facultate-economie-afaceri",
-      "alt": "Atelier de economie și administrarea afacerilor la WSU"
+      "alt": "FEEA"
     }
   },
   {
@@ -41,16 +41,25 @@
     "description": "Sportul se simte prin baschet, volei, fotbal, handbal, dans sportiv și activități în aer liber.",
     "image": {
       "base": "assets/img/facultati/facultate-educatie-fizica-sport",
-      "alt": "Activitate sportivă la WSU"
+      "alt": "FEFS"
     }
   },
   {
-    "title": "Facultatea de Fizică",
+    "title": "Facultatea de Fizică și Matematică",
     "keywords": "fizică fizica electricitate optică optica energie solară solara observator experimentarium",
     "description": "Laboratoarele explorează electricitatea, optica și energia solară, alături de vizite la Observatorul Astronomic și Experimentarium.",
     "image": {
       "base": "assets/img/facultati/facultate-fizica",
-      "alt": "Experiment de fizică la WSU"
+      "alt": "FFM"
+    }
+  },
+  {
+    "title": "Facultatea de Informatică",
+    "keywords": "matematică matematica informatică informatica C Java Python robotică robotica tehnologie",
+    "description": "C, Java, Python, robotică și matematică avansată apar într-un program gândit pentru cei care vor să înțeleagă tehnologia.",
+    "image": {
+      "base": "assets/img/facultati/facultate-matematica-informatica",
+      "alt": "FI"
     }
   },
   {
@@ -59,16 +68,7 @@
     "description": "Limbile străine, istoria, filosofia și teologia se întâlnesc în discuții, prezentări și exerciții culturale.",
     "image": {
       "base": "assets/img/facultati/facultate-litere-istorie-filosofie-teologie",
-      "alt": "Activitate culturală la WSU"
-    }
-  },
-  {
-    "title": "Facultatea de Matematică și Informatică",
-    "keywords": "matematică matematica informatică informatica C Java Python robotică robotica tehnologie",
-    "description": "C, Java, Python, robotică și matematică avansată apar într-un program gândit pentru cei care vor să înțeleagă tehnologia.",
-    "image": {
-      "base": "assets/img/facultati/facultate-matematica-informatica",
-      "alt": "Atelier de informatică la WSU"
+      "alt": "FLIFT"
     }
   },
   {
@@ -77,16 +77,16 @@
     "description": "Actoria, improvizația, vorbirea scenică, instrumentele muzicale și canto-ul devin parte dintr-o experiență expresivă.",
     "image": {
       "base": "assets/img/facultati/facultate-muzica-teatru",
-      "alt": "Atelier de muzică și teatru la WSU"
+      "alt": "FMT"
     }
   },
   {
-    "title": "Facultatea de Sociologie și Psihologie",
+    "title": "Facultatea de Psihologie și Științele Educației",
     "keywords": "sociologie psihologie resurse umane pedagogie manipulare comportament",
     "description": "Participanții află despre resurse umane, pedagogie, metode de învățare, psihologie juridică și tehnici de analiză comportamentală.",
     "image": {
       "base": "assets/img/facultati/facultate-sociologie-psihologie",
-      "alt": "Atelier de sociologie și psihologie la WSU"
+      "alt": "FPSE"
     }
   },
   {
@@ -95,7 +95,7 @@
     "description": "Public speaking, gestionarea emoțiilor, publicații, comunicare și dezbateri pe teme actuale, într-un cadru practic.",
     "image": {
       "base": "assets/img/facultati/facultate-stiinte-guvernarii-comunicarii",
-      "alt": "Atelier de comunicare la WSU"
+      "alt": "FSGC"
     }
   }
 ]

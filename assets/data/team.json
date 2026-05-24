@@ -4,87 +4,473 @@
       "name": "Ionela OLAR",
       "role": "Coordonator General",
       "image": {
-        "base": "assets/img/echipa/ionela-olar",
-        "alt": "Ionela Olar, coordonator general WSU"
-      }
+        "src": "",
+        "hoverSrc": "",
+        "alt": "Coordonator General WSU"
+      },
+      "socials": [
+        {
+          "label": "Facebook",
+          "href": "",
+          "icon": "facebook"
+        },
+        {
+          "label": "Instagram",
+          "href": "",
+          "icon": "instagram"
+        }
+      ]
     },
     {
       "name": "Deborah SZEKELYHIDI",
       "role": "Secretar General",
       "image": {
-        "base": "assets/img/echipa/deborah-szekelyhidi",
-        "alt": "Deborah Szekelyhidi, secretar general WSU"
-      }
+        "src": "",
+        "hoverSrc": "",
+        "alt": "Secretar General WSU"
+      },
+      "socials": [
+        {
+          "label": "Facebook",
+          "href": "",
+          "icon": "facebook"
+        },
+        {
+          "label": "Instagram",
+          "href": "",
+          "icon": "instagram"
+        }
+      ]
     },
     {
       "name": "Eduard BELINSCHI",
-      "role": "Responsabil IT & Logistică",
+      "role": "Responsabil IT&Logistică",
       "image": {
-        "base": "assets/img/echipa/eduard-belinschi",
-        "alt": "Eduard Belinschi, responsabil IT și logistică WSU"
-      }
+        "src": "",
+        "hoverSrc": "",
+        "alt": "Responsabil IT&Logistică WSU"
+      },
+      "socials": [
+        {
+          "label": "Facebook",
+          "href": "",
+          "icon": "facebook"
+        },
+        {
+          "label": "Instagram",
+          "href": "",
+          "icon": "instagram"
+        }
+      ]
     },
     {
       "name": "Maria SAIOC",
       "role": "Responsabil Program și Caravană",
       "image": {
-        "base": "assets/img/echipa/maria-saioc",
-        "alt": "Maria Saioc, responsabil program și caravană WSU"
-      }
-    },
-    {
-      "name": "Ecaterina CORBU",
-      "role": "Președinte OSUT",
-      "image": {
-        "base": "assets/img/echipa/ecaterina-corbu",
-        "alt": "Ecaterina Corbu, președinte OSUT"
-      }
+        "src": "",
+        "hoverSrc": "",
+        "alt": "Responsabil Program și Caravană WSU"
+      },
+      "socials": [
+        {
+          "label": "Facebook",
+          "href": "",
+          "icon": "facebook"
+        },
+        {
+          "label": "Instagram",
+          "href": "",
+          "icon": "instagram"
+        }
+      ]
     },
     {
       "name": "Bianca DRILĂ",
       "role": "Responsabil Relații Publice",
       "image": {
-        "base": "assets/img/echipa/bianca-drila",
-        "alt": "Bianca Drilă, responsabil relații publice WSU"
-      }
+        "src": "",
+        "hoverSrc": "",
+        "alt": "Responsabil Relații Publice WSU"
+      },
+      "socials": [
+        {
+          "label": "Facebook",
+          "href": "",
+          "icon": "facebook"
+        },
+        {
+          "label": "Instagram",
+          "href": "",
+          "icon": "instagram"
+        }
+      ]
     },
     {
       "name": "Miruna SUCIU",
       "role": "Responsabil Resurse Umane",
       "image": {
-        "base": "assets/img/echipa/miruna-suciu",
-        "alt": "Miruna Suciu, responsabil resurse umane WSU"
-      }
+        "src": "",
+        "hoverSrc": "",
+        "alt": "Responsabil Resurse Umane WSU"
+      },
+      "socials": [
+        {
+          "label": "Facebook",
+          "href": "",
+          "icon": "facebook"
+        },
+        {
+          "label": "Instagram",
+          "href": "",
+          "icon": "instagram"
+        }
+      ]
     },
     {
       "name": "Anastasia SAS",
       "role": "Responsabil Imagine",
       "image": {
-        "base": "assets/img/echipa/anastasia-sas",
-        "alt": "Anastasia Sas, responsabil imagine WSU"
-      }
+        "src": "",
+        "hoverSrc": "",
+        "alt": "Responsabil Imagine WSU"
+      },
+      "socials": [
+        {
+          "label": "Facebook",
+          "href": "",
+          "icon": "facebook"
+        },
+        {
+          "label": "Instagram",
+          "href": "",
+          "icon": "instagram"
+        }
+      ]
     },
     {
       "name": "Amalia JIV",
       "role": "Responsabil Fundraising",
       "image": {
-        "base": "assets/img/echipa/amalia-jiv",
-        "alt": "Amalia Jiv, responsabil fundraising WSU"
-      }
+        "src": "",
+        "hoverSrc": "",
+        "alt": "Responsabil Fundraising WSU"
+      },
+      "socials": [
+        {
+          "label": "Facebook",
+          "href": "",
+          "icon": "facebook"
+        },
+        {
+          "label": "Instagram",
+          "href": "",
+          "icon": "instagram"
+        }
+      ]
+    },
+    {
+      "name": "Ecaterina CORBU",
+      "role": "Președinte OSUT",
+      "image": {
+        "src": "assets/img/echipa/Eca1.png",
+        "hoverSrc": "assets/img/echipa/Eca2.png",
+        "alt": "Președinte OSUT"
+      },
+      "socials": [
+        {
+          "label": "Facebook",
+          "href": "https://www.facebook.com/corbu.ecaterina.3",
+          "icon": "facebook"
+        },
+        {
+          "label": "Instagram",
+          "href": "https://www.instagram.com/ecaterina_2003_/",
+          "icon": "instagram"
+        }
+      ]
     }
   ],
+
+
+
   "coordinators": [
-    "Coordonator Facultatea de Arte și Design",
-    "Coordonator Facultatea de Chimie, Biologie, Geografie",
-    "Coordonator Facultatea de Drept",
-    "Coordonator Facultatea de Economie și Administrare a Afacerilor",
-    "Coordonator Facultatea de Educație Fizică și Sport",
-    "Coordonator Facultatea de Matematică și Informatică",
-    "Coordonator Facultatea de Muzică și Teatru",
-    "Responsabil Echipa de Intervenție"
+    {
+      "name": "???",
+      "role": "Coordonator Facultatea de Arte și Design",
+      "image": {
+        "src": "",
+        "hoverSrc": "",
+        "alt": "Coordonator Facultatea de Arte și Design"
+      },
+      "socials": [
+        {
+          "label": "Facebook",
+          "href": "",
+          "icon": "facebook"
+        },
+        {
+          "label": "Instagram",
+          "href": "",
+          "icon": "instagram"
+        }
+      ]
+    },
+    {
+      "name": "???",
+      "role": "Coordonator Facultatea de Chimie, Biologie, Geografie",
+      "image": {
+        "src": "",
+        "hoverSrc": "",
+        "alt": "Coordonator Facultatea de Chimie, Biologie, Geografie"
+      },
+      "socials": [
+        {
+          "label": "Facebook",
+          "href": "",
+          "icon": "facebook"
+        },
+        {
+          "label": "Instagram",
+          "href": "",
+          "icon": "instagram"
+        }
+      ]
+    },
+    {
+      "name": "???",
+      "role": "Coordonator Facultatea de Drept",
+      "image": {
+        "src": "",
+        "hoverSrc": "",
+        "alt": "Coordonator Facultatea de Drept"
+      },
+      "socials": [
+        {
+          "label": "Facebook",
+          "href": "",
+          "icon": "facebook"
+        },
+        {
+          "label": "Instagram",
+          "href": "",
+          "icon": "instagram"
+        }
+      ]
+    },
+    {
+      "name": "???",
+      "role": "Coordonator Facultatea de Economie și Administrare a Afacerilor",
+      "image": {
+        "src": "",
+        "hoverSrc": "",
+        "alt": "Coordonator Facultatea de Economie și Administrare a Afacerilor"
+      },
+      "socials": [
+        {
+          "label": "Facebook",
+          "href": "",
+          "icon": "facebook"
+        },
+        {
+          "label": "Instagram",
+          "href": "",
+          "icon": "instagram"
+        }
+      ]
+    },
+    {
+      "name": "???",
+      "role": "Coordonator Facultatea de Educație Fizică și Sport",
+      "image": {
+        "src": "",
+        "hoverSrc": "",
+        "alt": "Coordonator Facultatea de Educație Fizică și Sport"
+      },
+      "socials": [
+        {
+          "label": "Facebook",
+          "href": "",
+          "icon": "facebook"
+        },
+        {
+          "label": "Instagram",
+          "href": "",
+          "icon": "instagram"
+        }
+      ]
+    },
+    {
+      "name": "???",
+      "role": "Coordonator Facultatea de Fizică și Matematică",
+      "image": {
+        "src": "",
+        "hoverSrc": "",
+        "alt": "Coordonator Facultatea de Fizică și Matematică"
+      },
+      "socials": [
+        {
+          "label": "Facebook",
+          "href": "",
+          "icon": "facebook"
+        },
+        {
+          "label": "Instagram",
+          "href": "",
+          "icon": "instagram"
+        }
+      ]
+    },
+    {
+      "name": "???",
+      "role": "Coordonator Facultatea de Informatică",
+      "image": {
+        "src": "",
+        "hoverSrc": "",
+        "alt": "Coordonator Facultatea Informatică"
+      },
+      "socials": [
+        {
+          "label": "Facebook",
+          "href": "",
+          "icon": "facebook"
+        },
+        {
+          "label": "Instagram",
+          "href": "",
+          "icon": "instagram"
+        }
+      ]
+    },
+    {
+      "name": "???",
+      "role": "Coordonator Facultatea de Litere, Istorie, Filosofie și Teologie",
+      "image": {
+        "src": "",
+        "hoverSrc": "",
+        "alt": "Coordonator Facultatea de Litere, Istorie, Filosofie și Teologie"
+      },
+      "socials": [
+        {
+          "label": "Facebook",
+          "href": "",
+          "icon": "facebook"
+        },
+        {
+          "label": "Instagram",
+          "href": "",
+          "icon": "instagram"
+        }
+      ]
+    },
+    {
+      "name": "???",
+      "role": "Coordonator Facultatea de Muzică și Teatru",
+      "image": {
+        "src": "assets/img/echipa/Unknown_1.png",
+        "hoverSrc": "assets/img/echipa/Unknown_2.png",
+        "alt": "Coordonator Facultatea de Muzică și Teatru"
+      },
+      "socials": [
+        {
+          "label": "Facebook",
+          "href": "",
+          "icon": "facebook"
+        },
+        {
+          "label": "Instagram",
+          "href": "",
+          "icon": "instagram"
+        }
+      ]
+    },
+    {
+      "name": "???",
+      "role": "Coordonator Facultatea de Psihologie și Științele Educației",
+      "image": {
+        "src": "",
+        "hoverSrc": "",
+        "alt": "Coordonator Facultatea de Psihologie și Științele Educației"
+      },
+      "socials": [
+        {
+          "label": "Facebook",
+          "href": "",
+          "icon": "facebook"
+        },
+        {
+          "label": "Instagram",
+          "href": "",
+          "icon": "instagram"
+        }
+      ]
+    },
+    {
+      "name": "???",
+      "role": "Coordonator Facultatea de Științe ale Guvernării şi Comunicării",
+      "image": {
+        "src": "",
+        "hoverSrc": "",
+        "alt": "Coordonator Facultatea de Științe ale Guvernării şi Comunicării"
+      },
+      "socials": [
+        {
+          "label": "Facebook",
+          "href": "",
+          "icon": "facebook"
+        },
+        {
+          "label": "Instagram",
+          "href": "",
+          "icon": "instagram"
+        }
+      ]
+    },
+    {
+      "name": "???",
+      "role": "Coordonator Facultatea de Sociologie și Asistență Socială",
+      "image": {
+        "src": "",
+        "hoverSrc": "",
+        "alt": "Coordonator Facultatea de Sociologie și Asistență Socială"
+      },
+      "socials": [
+        {
+          "label": "Facebook",
+          "href": "",
+          "icon": "facebook"
+        },
+        {
+          "label": "Instagram",
+          "href": "",
+          "icon": "instagram"
+        }
+      ]
+    },
+    {
+      "name": "???",
+      "role": "Responsabil Echipa de Intervenție",
+      "image": {
+        "src": "",
+        "hoverSrc": "",
+        "alt": "Responsabil Echipa de Intervenție"
+      },
+      "socials": [
+        {
+          "label": "Facebook",
+          "href": "",
+          "icon": "facebook"
+        },
+        {
+          "label": "Instagram",
+          "href": "",
+          "icon": "instagram"
+        }
+      ]
+    }
   ],
   "placeholderImage": {
-    "base": "assets/img/echipa/coordonator-placeholder",
-    "alt": "Coordonator WSU în curând"
+    "src": "assets/img/echipa/Unknown_1.png",
+    "hoverSrc": "assets/img/echipa/Unknown_2.png",
+    "alt": "???"
   }
 }

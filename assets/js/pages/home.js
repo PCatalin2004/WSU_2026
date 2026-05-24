@@ -27,7 +27,7 @@
 
     const gallery = await loadData("gallery");
     host.innerHTML = pickFeaturedGalleryItems(gallery)
-      .map((item) => responsiveImage(item.image, { sizes: "(max-width: 860px) 50vw, 25vw", srcSize: "thumb" }))
+      .map((item) => responsiveImage(item.image, { sizes: "(max-width: 860px) 50vw, 25vw" }))
       .join("");
   }
 

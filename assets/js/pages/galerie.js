@@ -12,7 +12,7 @@
 
     return `
       <button class="gallery-item reveal-card" type="button" data-large="${imageUrl(item.image, "large")}" data-caption="${caption}" aria-label="Deschide imaginea ${index + 1}: ${caption}">
-        ${responsiveImage(item.image, { sizes: "(max-width: 860px) 50vw, 33vw", srcSize: "thumb" })}
+        ${responsiveImage(item.image, { sizes: "(max-width: 860px) 50vw, 33vw" })}
       </button>
     `;
   }

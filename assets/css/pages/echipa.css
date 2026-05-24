@@ -12,13 +12,6 @@
   overflow: hidden;
 }
 
-.team-section-secondary {
-  background:
-    radial-gradient(circle at 12% 18%, rgba(8, 123, 211, 0.12), transparent 24%),
-    radial-gradient(circle at 86% 18%, rgba(246, 177, 58, 0.16), transparent 24%),
-    linear-gradient(180deg, var(--cloud) 0%, #ffffff 76%);
-}
-
 .team-shell {
   position: relative;
   width: 100%;
@@ -57,16 +50,21 @@
 }
 
 .team-grid {
+  --team-grid-gap: clamp(28px, 3vw, 40px);
+
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  width: 100%;
-  gap: clamp(24px, 3vw, 36px);
+  width: 1320px;
+  max-width: none;
+  margin-inline: auto;
+  gap: var(--team-grid-gap);
 }
 
 .team-member {
-  flex: 0 1 280px;
-  max-width: 280px;
+  width: 300px;
+  flex: 0 1 300px;
+  max-width: 300px;
   min-width: 0;
 }
 
@@ -77,14 +75,14 @@
   align-content: start;
   width: 100%;
   min-height: 100%;
-  padding: 20px 16px 18px;
+  padding: 20px 0 18px;
   row-gap: 10px;
   text-align: center;
 }
 
 .team-member-portrait {
   position: relative;
-  width: min(100%, 250px);
+  width: min(100%, 300px);
   aspect-ratio: 1;
   margin: 0 auto;
   overflow: hidden;
@@ -131,13 +129,13 @@
   transform: scale(1.04);
 }
 
-.team-member-card:hover .team-member-image-default,
-.team-member-card:focus-within .team-member-image-default {
+.team-member-card-has-hover:hover .team-member-image-default,
+.team-member-card-has-hover:focus-within .team-member-image-default {
   opacity: 0;
 }
 
-.team-member-card:hover .team-member-image-hover,
-.team-member-card:focus-within .team-member-image-hover {
+.team-member-card-has-hover:hover .team-member-image-hover,
+.team-member-card-has-hover:focus-within .team-member-image-hover {
   opacity: 1;
 }
 
@@ -221,7 +219,7 @@
   .team-grid > .team-member:last-child:nth-child(odd) {
     grid-column: 1 / -1;
     justify-self: center;
-    width: min(100%, 280px);
+    width: min(100%, 300px);
   }
 }
 
@@ -250,7 +248,7 @@
   }
 
   .team-member-portrait {
-    width: min(100%, 170px);
+    width: min(100%, 184px);
     border-width: 4px;
   }
 
@@ -281,11 +279,11 @@
   }
 
   .team-grid > .team-member:last-child:nth-child(odd) {
-    width: min(100%, 168px);
+    width: min(100%, 184px);
   }
 
   .team-member-portrait {
-    width: min(100%, 142px);
+    width: min(100%, 156px);
   }
 
   .team-member h3 {

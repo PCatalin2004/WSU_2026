@@ -12,7 +12,7 @@
 
     return `
       <article class="faculty-card reveal-card" data-title="${escapeHtml(searchText)}">
-        ${responsiveImage(faculty.image, { sizes: "(max-width: 860px) 100vw, 210px" })}
+        ${responsiveImage(faculty.image, { sizes: "(max-width: 860px) 100vw, 315px" })}
         <div>
           <h2>${escapeHtml(faculty.title)}</h2>
           <p>${escapeHtml(faculty.description)}</p>

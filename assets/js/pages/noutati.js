@@ -5,7 +5,6 @@
     renderNewsCard,
   } = window.WSU;
 
-  const INITIAL_VISIBLE_NEWS = 3;
   const NEWS_PER_CLICK = 2;
 
   function hiddenNewsCards() {
@@ -34,7 +33,7 @@
 
     const news = await loadData("news");
     host.innerHTML = news
-      .map((item, index) => renderNewsCard(item, { large: true, hidden: index >= INITIAL_VISIBLE_NEWS }))
+      .map((item) => renderNewsCard(item, { large: true }))
       .join("");
 
     const loadMoreButton = document.querySelector("[data-load-more]");

@@ -59,8 +59,9 @@ function refreshIcons() {
   }
 }
 
-function imageUrl(image, size = "medium") {
-  return `${image.base}-${size}.webp`;
+function imageUrl(image, size = "large") {
+  if (image.src) return image.src;
+  return `${image.base}-large.webp`;
 }
 
 function responsiveImage(image, options = {}) {
@@ -69,18 +70,14 @@ function responsiveImage(image, options = {}) {
     fetchPriority = "",
     loading = "lazy",
     sizes = "(max-width: 860px) 100vw, 50vw",
-    srcSize = "medium",
+    srcSize = "large",
   } = options;
 
   const classAttr = className ? ` class="${escapeHtml(className)}"` : "";
   const priorityAttr = fetchPriority ? ` fetchpriority="${escapeHtml(fetchPriority)}"` : "";
-  const srcset = [
-    `${imageUrl(image, "thumb")} 520w`,
-    `${imageUrl(image, "medium")} 900w`,
-    `${imageUrl(image, "large")} 1600w`,
-  ].join(", ");
+  const src = imageUrl(image, srcSize);
 
-  return `<img${classAttr} loading="${loading}" decoding="async"${priorityAttr} src="${imageUrl(image, srcSize)}" srcset="${srcset}" sizes="${escapeHtml(sizes)}" alt="${escapeHtml(image.alt)}">`;
+  return `<img${classAttr} loading="${loading}" decoding="async"${priorityAttr} src="${escapeHtml(src)}" alt="${escapeHtml(image.alt)}">`;
 }
 
 function renderNewsCard(item, options = {}) {
@@ -105,7 +102,11 @@ function renderNewsCard(item, options = {}) {
 }
 
 function renderNavLink(item, currentPage) {
-  const isCurrentPage = item.href === currentPage;
+  const pageAliases = {
+    "articol.html": "noutati.html",
+  };
+  const activePage = pageAliases[currentPage] || currentPage;
+  const isCurrentPage = item.href === activePage;
   const activeAttrs = isCurrentPage ? ' class="is-active" aria-current="page"' : "";
 
   return `<a href="${escapeHtml(item.href)}"${activeAttrs}>${escapeHtml(item.label)}</a>`;

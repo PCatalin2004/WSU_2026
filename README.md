@@ -6,6 +6,7 @@ Site static în HTML, CSS și JavaScript, construit ca replică modernizată pen
 
 - `index.html` - prima pagină
 - `noutati.html` - listă de articole
+- `articol.html` - template local pentru articolele din noutăți
 - `echipa.html` - echipa proiectului
 - `facultati.html` - facultăți, cu filtrare locală
 - `galerie.html` - galerie foto cu lightbox
@@ -27,7 +28,7 @@ Site static în HTML, CSS și JavaScript, construit ca replică modernizată pen
 - `assets/img/galerie/` - imaginile din galeria foto
 - `assets/img/inscrie-te/` - imaginea paginii de înscriere
 
-Imaginile de conținut folosesc variante responsive cu sufixele `-thumb`, `-medium` și `-large`.
+Imaginile de conținut păstrează o singură variantă, cu sufixul `-large`.
 
 ## Rulare locală
 
