@@ -3,6 +3,109 @@
   background-image: url("../../img/home/hero-wsu-painted-logo-large.webp");
 }
 
+.home-showcase .container {
+  max-width: 1500px;
+}
+
+.home-showcase .split-grid {
+  grid-template-columns: minmax(300px, 420px) minmax(640px, 1fr);
+  gap: clamp(42px, 5vw, 82px);
+}
+
+.home-showcase .split-grid.reverse {
+  grid-template-columns: minmax(640px, 1fr) minmax(300px, 420px);
+}
+
+.home-collage {
+  --home-collage-image: url("../../img/home/studenti-wsu-campus-large.webp");
+
+  position: relative;
+  width: min(100%, 980px);
+  aspect-ratio: 1020 / 590;
+  margin: 0;
+  justify-self: center;
+  isolation: isolate;
+}
+
+.home-collage::before {
+  content: none;
+}
+
+.home-collage-photo {
+  position: absolute;
+  display: block;
+  max-width: none;
+  background: var(--white);
+  background-image: var(--home-collage-image);
+  background-repeat: no-repeat;
+  border: 0;
+  box-shadow: 0 8px 16px rgba(12, 20, 32, 0.28);
+}
+
+.home-collage-photo-top-left {
+  top: 2%;
+  left: 1%;
+  z-index: 2;
+  width: 62%;
+  height: 52%;
+  background-size: 158% auto;
+  background-position: 0 1%;
+}
+
+.home-collage-photo-bottom {
+  top: 47%;
+  left: 15%;
+  z-index: 1;
+  width: 68%;
+  height: 51%;
+  background-size: 147% auto;
+  background-position: 43% 90%;
+}
+
+.home-collage-photo-top-right {
+  top: 18%;
+  right: 0;
+  z-index: 3;
+  width: 45%;
+  height: 51%;
+  background-size: 217% auto;
+  background-position: 100% 31%;
+}
+
+.home-collage-osut {
+  --home-collage-image: url("../../img/home/echipa-osut-large.webp");
+}
+
+.home-collage-photo-osut-top {
+  top: 2%;
+  left: 29%;
+  z-index: 3;
+  width: 50%;
+  height: 47%;
+  background-size: 199% auto;
+  background-position: 65% 0;
+}
+
+.home-collage-photo-osut-left {
+  top: 35%;
+  left: 0;
+  z-index: 1;
+  width: 52%;
+  height: 57%;
+  background-size: 202% auto;
+  background-position: 0 57%;
+}
+
+.home-collage-photo-osut-right {
+  top: 43%;
+  right: 0;
+  z-index: 2;
+  width: 50%;
+  height: 42%;
+  background-size: 207% auto;
+  background-position: 97% 77%;
+}
+
 .steps-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -126,6 +229,11 @@
 }
 
 @media (max-width: 1080px) {
+  .home-showcase .split-grid,
+  .home-showcase .split-grid.reverse {
+    grid-template-columns: 1fr;
+  }
+
   .activity-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
