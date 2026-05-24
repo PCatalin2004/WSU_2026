@@ -1,0 +1,268 @@
+.signup-hero {
+  background-image: url("../../img/inscrie-te/inscriere-hero-wsu-large.webp");
+}
+
+.signup-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.signup-summary article {
+  display: grid;
+  gap: 6px;
+  min-height: 138px;
+  padding: 22px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 30px rgba(25, 50, 80, 0.08);
+}
+
+.signup-summary svg {
+  width: 28px;
+  height: 28px;
+  color: var(--blue);
+}
+
+.signup-summary span,
+.process-card span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.signup-summary strong {
+  color: var(--ink);
+  font-size: 20px;
+  line-height: 1.25;
+}
+
+.signup-layout {
+  display: grid;
+  grid-template-columns: 310px minmax(0, 1fr);
+  gap: 50px;
+  align-items: start;
+}
+
+.signup-aside {
+  position: sticky;
+  top: 104px;
+  display: grid;
+  gap: 14px;
+}
+
+.date-box {
+  padding: 20px;
+  background: var(--cloud);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.date-box span {
+  display: block;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.date-box strong {
+  display: block;
+  margin-top: 6px;
+  color: var(--ink);
+  font-size: 20px;
+  line-height: 1.25;
+}
+
+.date-box.accent {
+  background: #fff6e7;
+  border-color: #f7d7a2;
+}
+
+.content-flow {
+  max-width: 800px;
+  min-width: 0;
+}
+
+.content-flow h2,
+.signup-final h2 {
+  margin: 34px 0 12px;
+  color: var(--ink);
+  font-family: "Kalam", cursive;
+  font-size: clamp(31px, 4vw, 46px);
+  line-height: 1.18;
+}
+
+.content-flow h2:first-child {
+  margin-top: 0;
+}
+
+.content-flow p {
+  color: var(--muted);
+  font-size: 17px;
+}
+
+.lead-panel {
+  padding: 26px;
+  background: var(--cloud);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.lead-panel h2 {
+  margin-top: 0;
+}
+
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin: 18px 0 34px;
+}
+
+.process-card {
+  padding: 20px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 26px rgba(25, 50, 80, 0.07);
+}
+
+.process-card span {
+  color: var(--blue);
+}
+
+.process-card h3 {
+  margin: 8px 0 8px;
+  line-height: 1.25;
+}
+
+.process-card p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.check-list {
+  display: grid;
+  gap: 10px;
+  padding: 0;
+  margin: 18px 0 28px;
+  list-style: none;
+}
+
+.check-list li {
+  position: relative;
+  padding-left: 30px;
+  color: var(--muted);
+}
+
+.check-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 14px;
+  height: 14px;
+  background: var(--green);
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 4px var(--white), 0 0 0 1px var(--green);
+}
+
+.document-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin: 26px 0 36px;
+}
+
+.document-link {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 132px;
+  padding: 18px;
+  color: var(--blue);
+  border: 1px solid rgba(8, 123, 211, 0.26);
+  border-radius: var(--radius);
+  font-weight: 800;
+}
+
+.document-link svg {
+  width: 28px;
+  height: 28px;
+}
+
+.signup-final {
+  margin-top: 36px;
+  padding: 28px;
+  color: var(--white);
+  background: var(--blue-dark);
+  border-radius: var(--radius);
+}
+
+.signup-final h2,
+.signup-final p {
+  color: var(--white);
+}
+
+.signup-final .button-primary {
+  color: var(--ink);
+  background: var(--sun);
+}
+
+.faq-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.faq-item {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.faq-item summary {
+  padding: 16px 18px;
+  color: var(--ink);
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.faq-item p {
+  margin: 0;
+  padding: 0 18px 18px;
+  color: var(--muted);
+}
+
+@media (max-width: 860px) {
+  .signup-summary,
+  .signup-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .signup-aside {
+    position: static;
+  }
+
+  .document-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .content-flow h2,
+  .signup-final h2 {
+    font-size: 28px;
+  }
+
+  .content-flow p {
+    font-size: 16px;
+  }
+
+  .process-grid {
+    grid-template-columns: 1fr;
+  }
+}

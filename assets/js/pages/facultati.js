@@ -1,44 +1,80 @@
-window.WSU.ready(async () => {
-  const host = document.querySelector("[data-faculty-grid]");
-  if (!host) return;
+(() => {
+  const {
+    escapeHtml,
+    linkAttrs,
+    loadData,
+    ready,
+    responsiveImage,
+  } = window.WSU;
 
-  const [faculties, signup] = await Promise.all([window.WSU.loadData("faculties"), window.WSU.loadData("signup")]);
-  host.innerHTML = faculties
-    .map(
-      (faculty) => `
-        <article class="faculty-card reveal-card" data-title="${window.WSU.escapeHtml(`${faculty.title} ${faculty.keywords}`)}">
-          ${window.WSU.responsiveImage(faculty.image, { sizes: "(max-width: 860px) 100vw, 210px" })}
-          <div>
-            <h2>${window.WSU.escapeHtml(faculty.title)}</h2>
-            <p>${window.WSU.escapeHtml(faculty.description)}</p>
-            <a href="${window.WSU.escapeHtml(signup.formUrl)}"${window.WSU.linkAttrs(signup.formUrl)}>Înscrie-te!</a>
-          </div>
-        </article>
-      `,
-    )
-    .join("");
+  function renderFacultyCard(faculty, formUrl) {
+    const searchText = `${faculty.title} ${faculty.keywords}`;
 
-  const facultySearch = document.querySelector("[data-faculty-search]");
-  const facultyCards = Array.from(document.querySelectorAll("[data-faculty-grid] .faculty-card"));
-  if (!facultySearch || !facultyCards.length) return;
+    return `
+      <article class="faculty-card reveal-card" data-title="${escapeHtml(searchText)}">
+        ${responsiveImage(faculty.image, { sizes: "(max-width: 860px) 100vw, 210px" })}
+        <div>
+          <h2>${escapeHtml(faculty.title)}</h2>
+          <p>${escapeHtml(faculty.description)}</p>
+          <a href="${escapeHtml(formUrl)}"${linkAttrs(formUrl)}>Înscrie-te!</a>
+        </div>
+      </article>
+    `;
+  }
 
-  const noResults = document.createElement("p");
-  noResults.className = "no-results";
-  noResults.setAttribute("aria-live", "polite");
-  noResults.textContent = "Nu am găsit o facultate pentru căutarea ta.";
-  host.after(noResults);
+  function createNoResultsMessage(host) {
+    const message = document.createElement("p");
+    message.className = "no-results";
+    message.setAttribute("aria-live", "polite");
+    message.textContent = "Nu am găsit o facultate pentru căutarea ta.";
 
-  facultySearch.addEventListener("input", () => {
-    const query = facultySearch.value.trim().toLowerCase();
-    let visibleCount = 0;
+    host.after(message);
+    return message;
+  }
 
-    facultyCards.forEach((card) => {
-      const haystack = `${card.dataset.title || ""} ${card.textContent}`.toLowerCase();
-      const isVisible = query === "" || haystack.includes(query);
-      card.hidden = !isVisible;
-      if (isVisible) visibleCount += 1;
+  function cardMatchesSearch(card, query) {
+    const searchArea = `${card.dataset.title || ""} ${card.textContent}`.toLowerCase();
+    return query === "" || searchArea.includes(query);
+  }
+
+  function filterFacultyCards(cards, noResults, query) {
+    let visibleCards = 0;
+
+    cards.forEach((card) => {
+      const shouldShow = cardMatchesSearch(card, query);
+      card.hidden = !shouldShow;
+
+      if (shouldShow) {
+        visibleCards += 1;
+      }
     });
 
-    noResults.classList.toggle("is-visible", visibleCount === 0);
+    noResults.classList.toggle("is-visible", visibleCards === 0);
+  }
+
+  function initFacultySearch(host) {
+    const searchInput = document.querySelector("[data-faculty-search]");
+    const cards = Array.from(host.querySelectorAll(".faculty-card"));
+
+    if (!searchInput || cards.length === 0) return;
+
+    const noResults = createNoResultsMessage(host);
+
+    searchInput.addEventListener("input", () => {
+      filterFacultyCards(cards, noResults, searchInput.value.trim().toLowerCase());
+    });
+  }
+
+  ready(async () => {
+    const host = document.querySelector("[data-faculty-grid]");
+    if (!host) return;
+
+    const [faculties, signup] = await Promise.all([
+      loadData("faculties"),
+      loadData("signup"),
+    ]);
+
+    host.innerHTML = faculties.map((faculty) => renderFacultyCard(faculty, signup.formUrl)).join("");
+    initFacultySearch(host);
   });
-});
+})();

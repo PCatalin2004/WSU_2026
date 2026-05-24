@@ -1,59 +1,87 @@
-window.WSU.ready(async () => {
-  const signupLinks = document.querySelectorAll("[data-signup-form]");
-  const period = document.querySelector("[data-signup-period]");
-  const deadline = document.querySelector("[data-signup-deadline]");
-  const documentsHost = document.querySelector("[data-signup-documents]");
-  const stepsHost = document.querySelector("[data-signup-steps]");
-  const faqHost = document.querySelector("[data-signup-faq]");
-  if (!signupLinks.length && !documentsHost && !stepsHost && !faqHost) return;
+(() => {
+  const {
+    escapeHtml,
+    linkAttrs,
+    loadData,
+    ready,
+  } = window.WSU;
 
-  const signup = await window.WSU.loadData("signup");
-  signupLinks.forEach((link) => {
-    link.setAttribute("href", signup.formUrl);
-    link.setAttribute("target", "_blank");
-    link.setAttribute("rel", "noopener noreferrer");
+  function pageNeedsSignupData() {
+    return Boolean(
+      document.querySelector(
+        [
+          "[data-signup-form]",
+          "[data-signup-period]",
+          "[data-signup-deadline]",
+          "[data-signup-documents]",
+          "[data-signup-steps]",
+          "[data-signup-faq]",
+        ].join(", "),
+      ),
+    );
+  }
+
+  function updateSignupLinks(formUrl) {
+    document.querySelectorAll("[data-signup-form]").forEach((link) => {
+      link.setAttribute("href", formUrl);
+      link.setAttribute("target", "_blank");
+      link.setAttribute("rel", "noopener noreferrer");
+    });
+  }
+
+  function updateText(selector, text) {
+    const element = document.querySelector(selector);
+    if (element) {
+      element.textContent = text;
+    }
+  }
+
+  function renderDocumentLink(documentItem) {
+    return `
+      <a class="document-link reveal-card" href="${escapeHtml(documentItem.href)}"${linkAttrs(documentItem.href)}>
+        <i data-lucide="${escapeHtml(documentItem.icon)}"></i>
+        <span>${escapeHtml(documentItem.label)}</span>
+      </a>
+    `;
+  }
+
+  function renderProcessStep(step, index) {
+    return `
+      <article class="process-card reveal-card">
+        <span>${String(index + 1).padStart(2, "0")}</span>
+        <h3>${escapeHtml(step.title)}</h3>
+        <p>${escapeHtml(step.text)}</p>
+      </article>
+    `;
+  }
+
+  function renderFaqItem(item) {
+    return `
+      <details class="faq-item">
+        <summary>${escapeHtml(item.question)}</summary>
+        <p>${escapeHtml(item.answer)}</p>
+      </details>
+    `;
+  }
+
+  function renderCollection(selector, items, renderItem) {
+    const host = document.querySelector(selector);
+    if (!host) return;
+
+    host.innerHTML = items.map(renderItem).join("");
+  }
+
+  ready(async () => {
+    if (!pageNeedsSignupData()) return;
+
+    const signup = await loadData("signup");
+
+    updateSignupLinks(signup.formUrl);
+    updateText("[data-signup-period]", signup.period);
+    updateText("[data-signup-deadline]", signup.deadline);
+
+    renderCollection("[data-signup-documents]", signup.documents, renderDocumentLink);
+    renderCollection("[data-signup-steps]", signup.steps, renderProcessStep);
+    renderCollection("[data-signup-faq]", signup.faq, renderFaqItem);
   });
-
-  if (period) period.textContent = signup.period;
-  if (deadline) deadline.textContent = signup.deadline;
-
-  if (documentsHost) {
-    documentsHost.innerHTML = signup.documents
-      .map(
-        (documentItem) => `
-          <a class="document-link reveal-card" href="${window.WSU.escapeHtml(documentItem.href)}"${window.WSU.linkAttrs(documentItem.href)}>
-            <i data-lucide="${window.WSU.escapeHtml(documentItem.icon)}"></i>
-            <span>${window.WSU.escapeHtml(documentItem.label)}</span>
-          </a>
-        `,
-      )
-      .join("");
-  }
-
-  if (stepsHost) {
-    stepsHost.innerHTML = signup.steps
-      .map(
-        (step, index) => `
-          <article class="process-card reveal-card">
-            <span>${String(index + 1).padStart(2, "0")}</span>
-            <h3>${window.WSU.escapeHtml(step.title)}</h3>
-            <p>${window.WSU.escapeHtml(step.text)}</p>
-          </article>
-        `,
-      )
-      .join("");
-  }
-
-  if (faqHost) {
-    faqHost.innerHTML = signup.faq
-      .map(
-        (item) => `
-          <details class="faq-item">
-            <summary>${window.WSU.escapeHtml(item.question)}</summary>
-            <p>${window.WSU.escapeHtml(item.answer)}</p>
-          </details>
-        `,
-      )
-      .join("");
-  }
-});
+})();

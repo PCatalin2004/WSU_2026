@@ -10,7 +10,8 @@ Site static în HTML, CSS și JavaScript, construit ca replică modernizată pen
 - `facultati.html` - facultăți, cu filtrare locală
 - `galerie.html` - galerie foto cu lightbox
 - `inscrie-te.html` - condiții de participare și linkuri oficiale
-- `assets/css/style.css` - stiluri globale responsive
+- `assets/css/style.css` - stiluri globale comune
+- `assets/css/pages/` - stiluri separate pentru fiecare pagină
 - `assets/js/main.js` - componente comune, utilitare, header/footer și cookie banner
 - `assets/js/pages/` - logica separată pentru fiecare pagină
 - `assets/js/vendor/` - librării locale terțe

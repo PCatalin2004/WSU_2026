@@ -13,7 +13,8 @@
   <link rel="icon" href="assets/img/icons/favicon-32x32.png">
   <link rel="apple-touch-icon" href="assets/img/icons/apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
-  <link rel="stylesheet" href="assets/css/style.css?v=8">
+  <link rel="stylesheet" href="assets/css/style.css?v=11">
+  <link rel="stylesheet" href="assets/css/pages/echipa.css?v=10">
 </head>
 <body data-page="echipa">
   <a class="skip-link" href="#main">Sari la conținut</a>
@@ -21,14 +22,32 @@
 
   <main id="main">
     <section class="page-hero team-hero"><div class="hero-overlay"></div><div class="container page-hero-content"><p class="eyebrow">Echipă</p><h1>Echipa de management 2026.</h1></div></section>
-    <section class="section"><div class="container"><div class="team-grid" data-team-management aria-live="polite"></div></div></section>
-    <section class="section section-soft"><div class="container"><div class="section-heading center"><p class="section-kicker">Coordonatori de facultate</p><h2>Rolurile pentru facultăți.</h2></div><div class="coordinator-grid" data-team-coordinators aria-live="polite"></div></div></section>
+    <section class="team-section" aria-labelledby="team-title">
+      <div class="team-shell">
+        <div class="team-heading">
+          <p class="team-kicker">Echipa WSU</p>
+          <h2 class="team-title" id="team-title">Echipa de management 2026</h2>
+          <p class="team-intro">Oamenii care țin împreună programul, comunicarea și energia din spatele West Summer University.</p>
+        </div>
+        <div class="team-grid" data-team-management aria-live="polite"></div>
+      </div>
+    </section>
+    <section class="team-section team-section-secondary" aria-labelledby="coordinators-title">
+      <div class="team-shell">
+        <div class="team-heading">
+          <p class="team-kicker">Coordonatori de facultate</p>
+          <h2 class="team-title" id="coordinators-title">Rolurile pentru facultăți</h2>
+          <p class="team-intro">Aici vor apărea coordonatorii care țin legătura cu facultățile și echipele de activități.</p>
+        </div>
+        <div class="team-grid" data-team-coordinators aria-live="polite"></div>
+      </div>
+    </section>
   </main>
   <div data-site-footer></div>
   <div data-site-cookie></div>
   <script src="assets/js/vendor/lucide.min.js" defer></script>
-  <script src="assets/js/main.js?v=7" defer></script>
-  <script src="assets/js/pages/echipa.js?v=1" defer></script>
+  <script src="assets/js/main.js?v=10" defer></script>
+  <script src="assets/js/pages/echipa.js?v=7" defer></script>
 </body>
 </html>
 

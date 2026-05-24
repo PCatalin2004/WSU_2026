@@ -1,0 +1,167 @@
+.home-hero {
+  min-height: calc(100svh - 78px);
+  background-image: url("../../img/home/hero-wsu-painted-logo-large.webp");
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.step-card {
+  position: relative;
+  min-height: 250px;
+  padding: 28px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 30px rgba(25, 50, 80, 0.08);
+}
+
+.step-card > svg {
+  width: 34px;
+  height: 34px;
+  color: var(--blue);
+}
+
+.step-number {
+  position: absolute;
+  top: 22px;
+  right: 24px;
+  color: rgba(8, 123, 211, 0.16);
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.step-card h3,
+.activity-card h3 {
+  margin: 16px 0 10px;
+  line-height: 1.25;
+}
+
+.step-card p,
+.activity-card p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.countdown {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.countdown span {
+  padding: 10px;
+  color: var(--blue);
+  background: #e9f6ff;
+  border-radius: var(--radius);
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.countdown strong {
+  display: block;
+  color: var(--ink);
+  font-size: 23px;
+  line-height: 1.1;
+}
+
+.activity-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.activity-card {
+  overflow: hidden;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.activity-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(8, 123, 211, 0.25);
+  box-shadow: 0 18px 42px rgba(25, 50, 80, 0.12);
+}
+
+.activity-card img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.activity-card div {
+  padding: 18px;
+}
+
+.memory-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr 1fr;
+  grid-auto-rows: 220px;
+  gap: 16px;
+}
+
+.memory-grid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius);
+}
+
+.memory-grid img:first-child {
+  grid-row: span 2;
+}
+
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+@media (max-width: 1080px) {
+  .activity-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 860px) {
+  .home-hero {
+    min-height: 620px;
+  }
+
+  .steps-grid,
+  .news-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .memory-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 180px;
+  }
+}
+
+@media (max-width: 560px) {
+  .home-hero {
+    min-height: 560px;
+  }
+
+  .activity-grid,
+  .memory-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .memory-grid {
+    grid-auto-rows: 220px;
+  }
+
+  .memory-grid img:first-child {
+    grid-row: auto;
+  }
+}

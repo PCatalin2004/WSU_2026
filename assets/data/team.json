@@ -9,19 +9,19 @@
       }
     },
     {
-      "name": "Eduard BELINSCHI",
-      "role": "Responsabil IT & Logistică",
-      "image": {
-        "base": "assets/img/echipa/eduard-belinschi",
-        "alt": "Eduard Belinschi, responsabil IT și logistică WSU"
-      }
-    },
-    {
       "name": "Deborah SZEKELYHIDI",
       "role": "Secretar General",
       "image": {
         "base": "assets/img/echipa/deborah-szekelyhidi",
         "alt": "Deborah Szekelyhidi, secretar general WSU"
+      }
+    },
+    {
+      "name": "Eduard BELINSCHI",
+      "role": "Responsabil IT & Logistică",
+      "image": {
+        "base": "assets/img/echipa/eduard-belinschi",
+        "alt": "Eduard Belinschi, responsabil IT și logistică WSU"
       }
     },
     {

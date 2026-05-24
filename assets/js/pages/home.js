@@ -1,38 +1,70 @@
-window.WSU.ready(async () => {
-  const newsHost = document.querySelector("[data-home-news]");
-  if (newsHost) {
-    const news = await window.WSU.loadData("news");
-    newsHost.innerHTML = news.slice(0, 3).map((item) => window.WSU.renderNewsCard(item)).join("");
+(() => {
+  const {
+    loadData,
+    ready,
+    renderNewsCard,
+    responsiveImage,
+  } = window.WSU;
+
+  const COUNTDOWN_INTERVAL = 60 * 1000;
+  const FEATURED_GALLERY_INDEXES = [0, 6, 9, 13];
+
+  async function renderHomeNews() {
+    const host = document.querySelector("[data-home-news]");
+    if (!host) return;
+
+    const news = await loadData("news");
+    host.innerHTML = news.slice(0, 3).map((item) => renderNewsCard(item)).join("");
   }
 
-  const galleryHost = document.querySelector("[data-home-gallery]");
-  if (galleryHost) {
-    const gallery = await window.WSU.loadData("gallery");
-    const featured = [0, 6, 9, 13].map((index) => gallery[index]).filter(Boolean);
-    galleryHost.innerHTML = featured
-      .map((item) => window.WSU.responsiveImage(item.image, { sizes: "(max-width: 860px) 50vw, 25vw", srcSize: "thumb" }))
+  function pickFeaturedGalleryItems(gallery) {
+    return FEATURED_GALLERY_INDEXES.map((index) => gallery[index]).filter(Boolean);
+  }
+
+  async function renderHomeGallery() {
+    const host = document.querySelector("[data-home-gallery]");
+    if (!host) return;
+
+    const gallery = await loadData("gallery");
+    host.innerHTML = pickFeaturedGalleryItems(gallery)
+      .map((item) => responsiveImage(item.image, { sizes: "(max-width: 860px) 50vw, 25vw", srcSize: "thumb" }))
       .join("");
   }
 
-  document.querySelectorAll("[data-countdown]").forEach((countdown) => {
-    const target = new Date(countdown.dataset.countdown).getTime();
+  function getCountdownParts(targetTime) {
+    const difference = Math.max(0, targetTime - Date.now());
+    const totalMinutes = Math.floor(difference / COUNTDOWN_INTERVAL);
+
+    return {
+      days: Math.floor(totalMinutes / 1440),
+      hours: Math.floor((totalMinutes % 1440) / 60),
+      minutes: totalMinutes % 60,
+    };
+  }
+
+  function updateCountdown(countdown) {
+    const targetTime = new Date(countdown.dataset.countdown).getTime();
+    const { days, hours, minutes } = getCountdownParts(targetTime);
     const daysNode = countdown.querySelector("[data-days]");
     const hoursNode = countdown.querySelector("[data-hours]");
     const minutesNode = countdown.querySelector("[data-minutes]");
 
-    const update = () => {
-      const diff = Math.max(0, target - Date.now());
-      const totalMinutes = Math.floor(diff / 60000);
-      const days = Math.floor(totalMinutes / 1440);
-      const hours = Math.floor((totalMinutes % 1440) / 60);
-      const minutes = totalMinutes % 60;
+    if (daysNode) daysNode.textContent = String(days);
+    if (hoursNode) hoursNode.textContent = String(hours).padStart(2, "0");
+    if (minutesNode) minutesNode.textContent = String(minutes).padStart(2, "0");
+  }
 
-      if (daysNode) daysNode.textContent = String(days);
-      if (hoursNode) hoursNode.textContent = String(hours).padStart(2, "0");
-      if (minutesNode) minutesNode.textContent = String(minutes).padStart(2, "0");
-    };
+  function initCountdown(countdown) {
+    updateCountdown(countdown);
+    window.setInterval(() => updateCountdown(countdown), COUNTDOWN_INTERVAL);
+  }
 
-    update();
-    setInterval(update, 60000);
+  function initCountdowns() {
+    document.querySelectorAll("[data-countdown]").forEach(initCountdown);
+  }
+
+  ready(async () => {
+    await Promise.all([renderHomeNews(), renderHomeGallery()]);
+    initCountdowns();
   });
-});
+})();

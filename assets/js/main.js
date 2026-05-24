@@ -1,85 +1,122 @@
 const WSU_DATA_BASE = "assets/data";
+const COOKIE_STORAGE_KEY = "wsu-cookie-ok";
 
-const dataCache = new Map();
-const pageCallbacks = [];
-let readySite = null;
-
-const escapeHtml = (value = "") =>
-  String(value)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
-
-const loadData = async (name) => {
-  if (!dataCache.has(name)) {
-    dataCache.set(
-      name,
-      fetch(`${WSU_DATA_BASE}/${name}.json`).then((response) => {
-        if (!response.ok) {
-          throw new Error(`Nu am putut încărca ${name}.json`);
-        }
-        return response.json();
-      }),
-    );
-  }
-  return dataCache.get(name);
+const socialIconPaths = {
+  facebook: "assets/img/icons/Facebook.png",
+  instagram: "assets/img/icons/Instagram.png",
+  tiktok: "assets/img/icons/Tiktok.png",
+  "music-2": "assets/img/icons/Tiktok.png",
 };
 
-const refreshIcons = () => {
+const htmlEntities = {
+  "&": "&amp;",
+  "<": "&lt;",
+  ">": "&gt;",
+  '"': "&quot;",
+  "'": "&#039;",
+};
+
+const dataCache = new Map();
+const queuedPageInitializers = [];
+let loadedSite = null;
+
+function escapeHtml(value = "") {
+  return String(value).replace(/[&<>"']/g, (character) => htmlEntities[character]);
+}
+
+function joinClasses(...classes) {
+  return classes.filter(Boolean).join(" ");
+}
+
+function isExternalLink(href = "") {
+  return /^https?:\/\//.test(href);
+}
+
+function linkAttrs(href) {
+  return isExternalLink(href) ? ' target="_blank" rel="noopener noreferrer"' : "";
+}
+
+async function readJson(response, name) {
+  if (!response.ok) {
+    throw new Error(`Nu am putut încărca ${name}.json`);
+  }
+
+  return response.json();
+}
+
+function loadData(name) {
+  if (!dataCache.has(name)) {
+    const request = fetch(`${WSU_DATA_BASE}/${name}.json`).then((response) => readJson(response, name));
+    dataCache.set(name, request);
+  }
+
+  return dataCache.get(name);
+}
+
+function refreshIcons() {
   if (window.lucide) {
     window.lucide.createIcons();
   }
-};
+}
 
-const linkAttrs = (href) => (/^https?:\/\//.test(href) ? ' target="_blank" rel="noopener noreferrer"' : "");
+function imageUrl(image, size = "medium") {
+  return `${image.base}-${size}.webp`;
+}
 
-const imageUrl = (image, size = "medium") => `${image.base}-${size}.webp`;
-
-const responsiveImage = (image, options = {}) => {
+function responsiveImage(image, options = {}) {
   const {
     className = "",
+    fetchPriority = "",
     loading = "lazy",
     sizes = "(max-width: 860px) 100vw, 50vw",
     srcSize = "medium",
-    fetchPriority = "",
   } = options;
+
   const classAttr = className ? ` class="${escapeHtml(className)}"` : "";
   const priorityAttr = fetchPriority ? ` fetchpriority="${escapeHtml(fetchPriority)}"` : "";
+  const srcset = [
+    `${imageUrl(image, "thumb")} 520w`,
+    `${imageUrl(image, "medium")} 900w`,
+    `${imageUrl(image, "large")} 1600w`,
+  ].join(", ");
 
-  return `<img${classAttr} loading="${loading}" decoding="async"${priorityAttr} src="${imageUrl(image, srcSize)}" srcset="${imageUrl(image, "thumb")} 520w, ${imageUrl(image, "medium")} 900w, ${imageUrl(image, "large")} 1600w" sizes="${escapeHtml(sizes)}" alt="${escapeHtml(image.alt)}">`;
-};
+  return `<img${classAttr} loading="${loading}" decoding="async"${priorityAttr} src="${imageUrl(image, srcSize)}" srcset="${srcset}" sizes="${escapeHtml(sizes)}" alt="${escapeHtml(image.alt)}">`;
+}
 
-const renderNewsCard = (item, options = {}) => {
-  const { large = false, hidden = false } = options;
-  const heading = large ? "h2" : "h3";
+function renderNewsCard(item, options = {}) {
+  const { hidden = false, large = false } = options;
+  const headingTag = large ? "h2" : "h3";
+  const cardClasses = joinClasses("news-card", large && "large", hidden && "is-hidden", "reveal-card");
   const imageSizes = large ? "(max-width: 860px) 100vw, 340px" : "(max-width: 860px) 100vw, 33vw";
+  const summary = large ? `<p>${escapeHtml(item.summary)}</p>` : "";
+  const linkClass = large ? ' class="button button-outline"' : "";
 
   return `
-    <article class="news-card${large ? " large" : ""}${hidden ? " is-hidden" : ""} reveal-card">
+    <article class="${cardClasses}">
       ${responsiveImage(item.image, { sizes: imageSizes })}
       <div>
         <span class="tag">${escapeHtml(item.tag)}</span>
-        <${heading}>${escapeHtml(item.title)}</${heading}>
-        ${large ? `<p>${escapeHtml(item.summary)}</p>` : ""}
-        <a${large ? ' class="button button-outline"' : ""} href="${escapeHtml(item.href)}"${linkAttrs(item.href)}>Citiți mai mult</a>
+        <${headingTag}>${escapeHtml(item.title)}</${headingTag}>
+        ${summary}
+        <a${linkClass} href="${escapeHtml(item.href)}"${linkAttrs(item.href)}>Citiți mai mult</a>
       </div>
     </article>
   `;
-};
+}
 
-const renderHeader = (site) => {
+function renderNavLink(item, currentPage) {
+  const isCurrentPage = item.href === currentPage;
+  const activeAttrs = isCurrentPage ? ' class="is-active" aria-current="page"' : "";
+
+  return `<a href="${escapeHtml(item.href)}"${activeAttrs}>${escapeHtml(item.label)}</a>`;
+}
+
+function renderHeader(site) {
   const host = document.querySelector("[data-site-header]");
   if (!host) return;
 
   const currentPage = location.pathname.split("/").pop() || "index.html";
-  const nav = site.navigation
-    .map((item) => {
-      const active = item.href === currentPage ? ' class="is-active" aria-current="page"' : "";
-      return `<a href="${escapeHtml(item.href)}"${active}>${escapeHtml(item.label)}</a>`;
-    })
-    .join("");
+  const navItems = site.navigation.map((item) => renderNavLink(item, currentPage)).join("");
 
   host.innerHTML = `
     <header class="site-header" data-header>
@@ -91,27 +128,55 @@ const renderHeader = (site) => {
         <i data-lucide="menu"></i>
       </button>
       <nav class="site-nav" aria-label="Navigare principală" data-nav>
-        ${nav}
+        ${navItems}
       </nav>
-      <a class="header-action" href="${escapeHtml(site.headerAction.href)}">${escapeHtml(site.headerAction.label)}</a>
     </header>
   `;
-};
+}
 
-const renderFooter = (site) => {
+function renderPartnerLogo(partner) {
+  return `<img loading="lazy" decoding="async" src="${escapeHtml(partner.src)}" alt="${escapeHtml(partner.alt)}">`;
+}
+
+function socialIconPath(item) {
+  const iconKey = String(item.icon || "").toLowerCase();
+  const labelKey = String(item.label || "").toLowerCase();
+
+  return socialIconPaths[iconKey] || socialIconPaths[labelKey] || "";
+}
+
+function socialIconName(item) {
+  const iconKey = String(item.icon || "").toLowerCase();
+  const labelKey = String(item.label || "").toLowerCase();
+
+  if (socialIconPaths[iconKey]) return iconKey;
+  if (socialIconPaths[labelKey]) return labelKey;
+
+  return iconKey || labelKey || "generic";
+}
+
+function renderSocialIcon(item, className = "social-icon-image") {
+  const iconPath = socialIconPath(item);
+  const iconName = socialIconName(item);
+
+  if (iconPath) {
+    const iconClasses = joinClasses(className, "social-icon", `social-icon-${iconName}`);
+    return `<img class="${escapeHtml(iconClasses)}" loading="lazy" decoding="async" src="${escapeHtml(iconPath)}" alt="" aria-hidden="true">`;
+  }
+
+  return `<i data-lucide="${escapeHtml(item.icon)}"></i>`;
+}
+
+function renderSocialLink(item) {
+  return `<a href="${escapeHtml(item.href)}"${linkAttrs(item.href)} aria-label="${escapeHtml(item.label)}">${renderSocialIcon(item)}</a>`;
+}
+
+function renderFooter(site) {
   const host = document.querySelector("[data-site-footer]");
   if (!host) return;
 
-  const partners = site.footer.partners
-    .map((partner) => `<img loading="lazy" decoding="async" src="${escapeHtml(partner.src)}" alt="${escapeHtml(partner.alt)}">`)
-    .join("");
-
-  const social = site.footer.social
-    .map(
-      (item) =>
-        `<a href="${escapeHtml(item.href)}"${linkAttrs(item.href)} aria-label="${escapeHtml(item.label)}"><i data-lucide="${escapeHtml(item.icon)}"></i></a>`,
-    )
-    .join("");
+  const partners = site.footer.partners.map(renderPartnerLogo).join("");
+  const socialLinks = site.footer.social.map(renderSocialLink).join("");
 
   host.innerHTML = `
     <footer class="site-footer" id="contact">
@@ -129,14 +194,14 @@ const renderFooter = (site) => {
         <div>
           <h2>${escapeHtml(site.footer.contactLabel)}</h2>
           <p>${site.footer.address}</p>
-          <div class="social-row">${social}</div>
+          <div class="social-row">${socialLinks}</div>
         </div>
       </div>
     </footer>
   `;
-};
+}
 
-const renderCookieBanner = (site) => {
+function renderCookieBanner(site) {
   const host = document.querySelector("[data-site-cookie]");
   if (!host) return;
 
@@ -146,39 +211,54 @@ const renderCookieBanner = (site) => {
       <button class="button button-dark" type="button" data-cookie-accept>${escapeHtml(site.cookie.button)}</button>
     </div>
   `;
-};
+}
 
-const renderSiteChrome = async () => {
+async function renderSiteChrome() {
   const site = await loadData("site");
+
   renderHeader(site);
   renderFooter(site);
   renderCookieBanner(site);
+
   return site;
-};
+}
 
-const initNavigation = () => {
-  const header = document.querySelector("[data-header]");
-  const nav = document.querySelector("[data-nav]");
-  const navToggle = document.querySelector("[data-nav-toggle]");
-
-  const setNavOpen = (isOpen) => {
+function createMobileMenuController(nav, navToggle) {
+  return function setNavOpen(isOpen) {
     if (!nav || !navToggle) return;
+
     nav.classList.toggle("is-open", isOpen);
     navToggle.setAttribute("aria-expanded", String(isOpen));
     navToggle.setAttribute("aria-label", isOpen ? "Închide meniul" : "Deschide meniul");
     navToggle.innerHTML = isOpen ? '<i data-lucide="x"></i>' : '<i data-lucide="menu"></i>';
     refreshIcons();
   };
+}
 
-  if (nav && navToggle) {
-    navToggle.addEventListener("click", () => {
-      setNavOpen(!nav.classList.contains("is-open"));
-    });
+function watchHeaderElevation(header) {
+  if (!header) return;
 
-    nav.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => setNavOpen(false));
-    });
-  }
+  const updateHeader = () => {
+    header.classList.toggle("is-elevated", window.scrollY > 8);
+  };
+
+  updateHeader();
+  window.addEventListener("scroll", updateHeader, { passive: true });
+}
+
+function initNavigation() {
+  const header = document.querySelector("[data-header]");
+  const nav = document.querySelector("[data-nav]");
+  const navToggle = document.querySelector("[data-nav-toggle]");
+  const setNavOpen = createMobileMenuController(nav, navToggle);
+
+  navToggle?.addEventListener("click", () => {
+    setNavOpen(!nav?.classList.contains("is-open"));
+  });
+
+  nav?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => setNavOpen(false));
+  });
 
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
@@ -186,76 +266,88 @@ const initNavigation = () => {
     }
   });
 
-  const updateHeader = () => {
-    header?.classList.toggle("is-elevated", window.scrollY > 8);
-  };
-  updateHeader();
-  window.addEventListener("scroll", updateHeader, { passive: true });
+  watchHeaderElevation(header);
+}
 
-  return setNavOpen;
-};
+function hideCookieBanner(banner) {
+  banner?.classList.add("is-hidden");
+}
 
-const initCookieBanner = () => {
+function initCookieBanner() {
   const banner = document.querySelector("[data-cookie-banner]");
   const acceptButton = document.querySelector("[data-cookie-accept]");
+  if (!banner || !acceptButton) return;
+
   try {
-    if (banner && localStorage.getItem("wsu-cookie-ok") === "true") {
-      banner.classList.add("is-hidden");
+    if (localStorage.getItem(COOKIE_STORAGE_KEY) === "true") {
+      hideCookieBanner(banner);
     }
-    if (banner && acceptButton) {
-      acceptButton.addEventListener("click", () => {
-        localStorage.setItem("wsu-cookie-ok", "true");
-        banner.classList.add("is-hidden");
-      });
-    }
+
+    acceptButton.addEventListener("click", () => {
+      localStorage.setItem(COOKIE_STORAGE_KEY, "true");
+      hideCookieBanner(banner);
+    });
   } catch {
-    acceptButton?.addEventListener("click", () => banner?.classList.add("is-hidden"));
+    acceptButton.addEventListener("click", () => hideCookieBanner(banner));
   }
-};
+}
 
-const initReveal = () => {
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const targets = document.querySelectorAll(".section, .reveal-card");
-  if (reduceMotion || !("IntersectionObserver" in window)) {
-    targets.forEach((target) => target.classList.add("is-visible"));
-    return;
-  }
+function showImmediately(targets) {
+  targets.forEach((target) => target.classList.add("is-visible"));
+}
 
-  targets.forEach((target) => target.classList.add("reveal"));
+function observeRevealTargets(targets) {
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        }
+        if (!entry.isIntersecting) return;
+
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
       });
     },
     { threshold: 0.12 },
   );
 
-  targets.forEach((target) => observer.observe(target));
-};
+  targets.forEach((target) => {
+    target.classList.add("reveal");
+    observer.observe(target);
+  });
+}
 
-const runPageCallbacks = async (site) => {
-  while (pageCallbacks.length) {
-    const callback = pageCallbacks.shift();
-    await callback(site);
-  }
-};
+function initReveal() {
+  const targets = document.querySelectorAll(".section, .reveal-card");
+  const prefersLessMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-const ready = (callback) => {
-  if (readySite) {
-    Promise.resolve(callback(readySite))
-      .then(() => {
-        refreshIcons();
-        initReveal();
-      })
-      .catch(console.error);
+  if (prefersLessMotion || !("IntersectionObserver" in window)) {
+    showImmediately(targets);
     return;
   }
-  pageCallbacks.push(callback);
-};
+
+  observeRevealTargets(targets);
+}
+
+async function runPageInitializer(callback, site) {
+  await callback(site);
+  refreshIcons();
+  initReveal();
+}
+
+async function runQueuedPageInitializers(site) {
+  while (queuedPageInitializers.length) {
+    const callback = queuedPageInitializers.shift();
+    await runPageInitializer(callback, site);
+  }
+}
+
+function ready(callback) {
+  if (!loadedSite) {
+    queuedPageInitializers.push(callback);
+    return;
+  }
+
+  runPageInitializer(callback, loadedSite).catch(console.error);
+}
 
 window.WSU = {
   escapeHtml,
@@ -267,14 +359,15 @@ window.WSU = {
   refreshIcons,
   renderNewsCard,
   responsiveImage,
+  renderSocialIcon,
 };
 
 document.addEventListener("DOMContentLoaded", async () => {
   try {
-    readySite = await renderSiteChrome();
+    loadedSite = await renderSiteChrome();
     initNavigation();
     initCookieBanner();
-    await runPageCallbacks(readySite);
+    await runQueuedPageInitializers(loadedSite);
   } catch (error) {
     console.error(error);
   } finally {
