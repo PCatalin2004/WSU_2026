@@ -294,38 +294,15 @@ function initCookieBanner() {
 }
 
 function showImmediately(targets) {
-  targets.forEach((target) => target.classList.add("is-visible"));
-}
-
-function observeRevealTargets(targets) {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-
-        entry.target.classList.add("is-visible");
-        observer.unobserve(entry.target);
-      });
-    },
-    { threshold: 0.12 },
-  );
-
   targets.forEach((target) => {
-    target.classList.add("reveal");
-    observer.observe(target);
+    target.classList.remove("reveal");
+    target.classList.add("is-visible");
   });
 }
 
 function initReveal() {
-  const targets = document.querySelectorAll(".section, .reveal-card");
-  const prefersLessMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  if (prefersLessMotion || !("IntersectionObserver" in window)) {
-    showImmediately(targets);
-    return;
-  }
-
-  observeRevealTargets(targets);
+  const targets = document.querySelectorAll(".section, .reveal-card, .reveal");
+  showImmediately(targets);
 }
 
 async function runPageInitializer(callback, site) {
