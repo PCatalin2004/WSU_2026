@@ -64,7 +64,7 @@
           </div>
         </div>
       </section>
-      <section class="section article-section">
+      <section class="section section-gradient article-section">
         <article class="container article-container">
           <figure class="article-cover">
             <img loading="eager" decoding="async" src="${escapeHtml(image)}" alt="${escapeHtml(article.image.alt)}">
@@ -90,7 +90,7 @@
           <h1>Articolul nu a fost găsit.</h1>
         </div>
       </section>
-      <section class="section">
+      <section class="section section-gradient">
         <div class="container article-not-found">
           <p>Linkul local nu corespunde niciunui articol publicat în această versiune a site-ului.</p>
           <a class="button button-primary" href="noutati.html">Înapoi la noutăți</a>
