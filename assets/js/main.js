@@ -1,5 +1,4 @@
 const WSU_DATA_BASE = "assets/data";
-const COOKIE_STORAGE_KEY = "wsu-cookie-ok";
 
 const socialIconPaths = {
   facebook: "assets/img/icons/Facebook.png",
@@ -202,24 +201,11 @@ function renderFooter(site) {
   `;
 }
 
-function renderCookieBanner(site) {
-  const host = document.querySelector("[data-site-cookie]");
-  if (!host) return;
-
-  host.innerHTML = `
-    <div class="cookie-banner" data-cookie-banner>
-      <p>${escapeHtml(site.cookie.text)}</p>
-      <button class="button button-dark" type="button" data-cookie-accept>${escapeHtml(site.cookie.button)}</button>
-    </div>
-  `;
-}
-
 async function renderSiteChrome() {
   const site = await loadData("site");
 
   renderHeader(site);
   renderFooter(site);
-  renderCookieBanner(site);
 
   return site;
 }
@@ -268,29 +254,6 @@ function initNavigation() {
   });
 
   watchHeaderElevation(header);
-}
-
-function hideCookieBanner(banner) {
-  banner?.classList.add("is-hidden");
-}
-
-function initCookieBanner() {
-  const banner = document.querySelector("[data-cookie-banner]");
-  const acceptButton = document.querySelector("[data-cookie-accept]");
-  if (!banner || !acceptButton) return;
-
-  try {
-    if (localStorage.getItem(COOKIE_STORAGE_KEY) === "true") {
-      hideCookieBanner(banner);
-    }
-
-    acceptButton.addEventListener("click", () => {
-      localStorage.setItem(COOKIE_STORAGE_KEY, "true");
-      hideCookieBanner(banner);
-    });
-  } catch {
-    acceptButton.addEventListener("click", () => hideCookieBanner(banner));
-  }
 }
 
 function showImmediately(targets) {
@@ -344,7 +307,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   try {
     loadedSite = await renderSiteChrome();
     initNavigation();
-    initCookieBanner();
     await runQueuedPageInitializers(loadedSite);
   } catch (error) {
     console.error(error);

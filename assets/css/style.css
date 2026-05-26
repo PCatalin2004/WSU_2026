@@ -582,33 +582,6 @@ input {
   transform: translateY(-2px);
 }
 
-.cookie-banner {
-  position: fixed;
-  right: 18px;
-  bottom: 18px;
-  z-index: 150;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  width: min(640px, calc(100% - 36px));
-  padding: 14px;
-  background: var(--white);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  box-shadow: 0 16px 44px rgba(20, 38, 62, 0.18);
-}
-
-.cookie-banner p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.45;
-}
-
-.cookie-banner.is-hidden {
-  display: none;
-}
-
 @media (max-width: 1080px) {
   .site-header {
     grid-template-columns: auto 1fr;
@@ -736,13 +709,6 @@ input {
     width: 100%;
   }
 
-  .cookie-banner {
-    left: 12px;
-    right: 12px;
-    bottom: 12px;
-    display: grid;
-    width: auto;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
