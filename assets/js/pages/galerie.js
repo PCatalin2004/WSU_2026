@@ -119,50 +119,16 @@
     const folders = enabledDriveFolders(config);
 
     if (!folders.length) {
-      return {
-        albums: null,
-        fallbackToLocal: config?.fallbackToLocal !== false,
-      };
+      return [];
     }
 
-    const albums = await Promise.all(
+    const results = await Promise.allSettled(
       folders.map((folder) => fetchDriveFolder(folder, config.apiKey))
     );
 
-    return {
-      albums,
-      fallbackToLocal: config?.fallbackToLocal !== false,
-    };
-  }
-
-  async function loadLocalAlbums() {
-    const gallery = await loadData("gallery");
-    const items = gallery.map((item) => ({
-      ...item,
-      source: "local",
-      image: {
-        ...item.image,
-      },
-      downloadUrl: imageUrl(item.image, "large"),
-    }));
-
-    return [
-      {
-        coverImage: items[0]?.image,
-        id: "local-gallery",
-        source: "local",
-        title: "Galerie WSU",
-        items,
-      },
-    ];
-  }
-
-  function photoCount(albums) {
-    return albums.reduce((total, album) => total + album.items.length, 0);
-  }
-
-  function folderCountLabel(count) {
-    return count === 1 ? "1 folder" : `${count} foldere`;
+    return results
+      .filter((result) => result.status === "fulfilled")
+      .map((result) => result.value);
   }
 
   function photoCountLabel(count) {
@@ -170,39 +136,19 @@
   }
 
   async function loadGalleryAlbums() {
-    let fallbackToLocal = true;
-
     try {
-      const driveGallery = await loadDriveAlbums();
-      fallbackToLocal = driveGallery.fallbackToLocal;
-
-      if (driveGallery.albums?.length) {
-        const totalPhotos = photoCount(driveGallery.albums);
-
-        return {
-          albums: driveGallery.albums,
-          source: "drive",
-          status: `${photoCountLabel(totalPhotos)} în ${folderCountLabel(driveGallery.albums.length)} încărcate din Google Drive.`,
-        };
-      }
+      const albums = await loadDriveAlbums();
+      return {
+        albums,
+        source: albums.length ? "drive" : "empty",
+      };
     } catch (error) {
       console.error(error);
-    }
-
-    if (!fallbackToLocal) {
       return {
         albums: [],
         source: "empty",
-        status: "Nu există foldere disponibile în Google Drive.",
       };
     }
-
-    const localAlbums = await loadLocalAlbums();
-    return {
-      albums: localAlbums,
-      source: "local",
-      status: "Galeria afișează fotografiile locale până configurezi folderele Google Drive.",
-    };
   }
 
   function renderDownloadLink(item, caption) {
@@ -276,6 +222,7 @@
       lastFocusedElement: null,
       lightbox: document.querySelector("[data-lightbox]"),
       lightboxClose: document.querySelector("[data-lightbox-close]"),
+      lightboxCounter: document.querySelector("[data-lightbox-counter]"),
       lightboxDownload: document.querySelector("[data-lightbox-download]"),
       lightboxImage: document.querySelector("[data-lightbox-image]"),
       lightboxNext: document.querySelector("[data-lightbox-next]"),
@@ -297,12 +244,15 @@
     if (state.lightboxDownload) {
       state.lightboxDownload.href = "#";
     }
+    if (state.lightboxCounter) {
+      state.lightboxCounter.textContent = "";
+    }
     document.body.classList.remove("lightbox-open");
     lastFocusedElement?.focus();
   }
 
   function showGalleryImage(state, index) {
-    const { lightbox, lightboxImage, lightboxDownload, galleryItems } = state;
+    const { lightbox, lightboxCounter, lightboxImage, lightboxDownload, galleryItems } = state;
     if (!lightbox || !lightboxImage || galleryItems.length === 0 || index < 0) return;
 
     if (lightbox.hidden) {
@@ -321,6 +271,9 @@
     if (lightboxDownload) {
       lightboxDownload.href = downloadUrl;
       lightboxDownload.setAttribute("aria-label", caption ? `Descarcă ${caption}` : "Descarcă fotografia");
+    }
+    if (lightboxCounter) {
+      lightboxCounter.textContent = `${state.activeGalleryIndex + 1}/${galleryItems.length}`;
     }
     lightbox.hidden = false;
     document.body.classList.add("lightbox-open");
@@ -377,13 +330,6 @@
     return state;
   }
 
-  function updateStatus(message) {
-    const status = document.querySelector("[data-gallery-status]");
-    if (status) {
-      status.textContent = message;
-    }
-  }
-
   function refreshDynamicContent() {
     refreshIcons();
     initReveal();
@@ -391,6 +337,7 @@
 
   function renderFolderView(gallery, state) {
     const host = document.querySelector("[data-gallery]");
+    const folderMeta = document.querySelector("[data-gallery-folder-meta]");
     const toolbar = document.querySelector("[data-gallery-toolbar]");
     const backButton = document.querySelector("[data-gallery-back]");
     if (!host) return;
@@ -398,9 +345,9 @@
     host.classList.add("is-folder-view");
     host.innerHTML = gallery.albums.map(renderFolderCard).join("");
 
-    if (toolbar) toolbar.hidden = false;
+    if (toolbar) toolbar.hidden = true;
+    if (folderMeta) folderMeta.textContent = "";
     if (backButton) backButton.hidden = true;
-    updateStatus(`${gallery.status} Alege un folder pentru a vedea fotografiile.`);
 
     host.querySelectorAll("[data-album-id]").forEach((button) => {
       button.addEventListener("click", () => {
@@ -416,6 +363,8 @@
 
   function renderPhotoView(album, state) {
     const host = document.querySelector("[data-gallery]");
+    const folderMeta = document.querySelector("[data-gallery-folder-meta]");
+    const toolbar = document.querySelector("[data-gallery-toolbar]");
     const backButton = document.querySelector("[data-gallery-back]");
     if (!host) return;
 
@@ -424,8 +373,9 @@
       ? album.items.map(renderGalleryItem).join("")
       : '<p class="gallery-loading">Folderul nu conține fotografii momentan.</p>';
 
+    if (toolbar) toolbar.hidden = false;
+    if (folderMeta) folderMeta.textContent = `${album.title} · ${photoCountLabel(album.items.length)}`;
     if (backButton) backButton.hidden = false;
-    updateStatus(`${album.title} · ${photoCountLabel(album.items.length)}`);
 
     if (state) {
       bindGalleryItems(state);
@@ -441,8 +391,7 @@
 
     const gallery = await loadGalleryAlbums();
     if (!gallery.albums.length) {
-      host.innerHTML = '<p class="gallery-loading">Nu există foldere disponibile momentan.</p>';
-      updateStatus(gallery.status);
+      host.innerHTML = '<p class="gallery-loading">Galeria este indisponibilă momentan.</p>';
       return;
     }
 

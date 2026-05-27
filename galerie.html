@@ -14,7 +14,7 @@
   <link rel="apple-touch-icon" href="assets/img/icons/apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
   <link rel="stylesheet" href="assets/css/style.css?v=15">
-  <link rel="stylesheet" href="assets/css/pages/galerie.css?v=6">
+  <link rel="stylesheet" href="assets/css/pages/galerie.css?v=7">
 </head>
 <body data-page="galerie">
   <a class="skip-link" href="#main">Sari la conținut</a>
@@ -25,8 +25,8 @@
     <section class="section section-gradient">
       <div class="container">
         <div class="gallery-toolbar" data-gallery-toolbar hidden>
-          <button class="gallery-back" type="button" data-gallery-back hidden><i data-lucide="arrow-left"></i>Înapoi la foldere</button>
-          <p class="gallery-status" data-gallery-status></p>
+          <button class="gallery-back" type="button" data-gallery-back hidden><i data-lucide="arrow-left"></i>Înapoi</button>
+          <p class="gallery-folder-meta" data-gallery-folder-meta></p>
         </div>
         <div class="gallery-grid" data-gallery aria-live="polite"></div>
       </div>
@@ -38,6 +38,7 @@
     <button class="lightbox-nav lightbox-prev" type="button" aria-label="Imaginea precedentă" data-lightbox-prev><i data-lucide="chevron-left"></i></button>
     <button class="lightbox-close" type="button" aria-label="Închide galeria" data-lightbox-close><i data-lucide="x"></i></button>
     <a class="lightbox-download" href="#" target="_blank" rel="noopener noreferrer" download aria-label="Descarcă fotografia" title="Descarcă fotografia" data-lightbox-download><i data-lucide="download"></i></a>
+    <div class="lightbox-counter" data-lightbox-counter></div>
     <figure>
       <img loading="lazy" decoding="async" src="" alt="" data-lightbox-image>
       <figcaption class="sr-only" data-lightbox-caption></figcaption>
@@ -46,7 +47,7 @@
   </div>
   <script src="assets/js/vendor/lucide.min.js" defer></script>
   <script src="assets/js/main.js?v=14" defer></script>
-  <script src="assets/js/pages/galerie.js?v=7" defer></script>
+  <script src="assets/js/pages/galerie.js?v=12" defer></script>
 </body>
 </html>
 

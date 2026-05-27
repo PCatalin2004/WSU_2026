@@ -53,7 +53,7 @@ Pagina `galerie.html` poate încărca fotografiile direct din foldere publice Go
 4. Setează `coverImage.src` către o imagine locală din `assets/img/...` pentru coperta albumului.
 5. Pune `apiKey` și schimbă `enabled` la `true` pentru folderele care trebuie afișate.
 
-Dacă `apiKey` lipsește sau folderele nu sunt activate, pagina afișează automat galeria locală din `assets/data/gallery.json`.
+Dacă `apiKey` lipsește, folderele nu sunt activate sau Google Drive nu răspunde, pagina afișează mesajul „Galeria este indisponibilă momentan.”
 
 ## Observații pentru publicare
 
