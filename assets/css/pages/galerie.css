@@ -221,7 +221,7 @@ body.lightbox-open {
   z-index: 200;
   display: grid;
   place-items: center;
-  padding: 34px;
+  padding: 34px 112px;
   background: rgba(5, 9, 14, 0.9);
 }
 
@@ -231,22 +231,18 @@ body.lightbox-open {
 
 .lightbox figure {
   margin: 0;
+  width: 100%;
   text-align: center;
 }
 
 .lightbox img {
+  width: auto;
   max-width: min(1120px, 100%);
-  max-height: 88vh;
+  max-height: calc(100vh - 68px);
+  margin: 0 auto;
   border-radius: var(--radius);
   object-fit: contain;
   box-shadow: 0 20px 80px rgba(0, 0, 0, 0.45);
-}
-
-.lightbox figcaption {
-  max-width: min(900px, calc(100vw - 40px));
-  margin: 14px auto 0;
-  color: rgba(255, 255, 255, 0.86);
-  font-size: 14px;
 }
 
 .lightbox-close {
@@ -333,7 +329,7 @@ body.lightbox-open {
   }
 
   .lightbox {
-    padding: 18px;
+    padding: 18px 18px 84px;
   }
 
   .lightbox-nav {

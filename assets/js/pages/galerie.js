@@ -275,7 +275,6 @@
       galleryItems: visibleGalleryItems(),
       lastFocusedElement: null,
       lightbox: document.querySelector("[data-lightbox]"),
-      lightboxCaption: document.querySelector("[data-lightbox-caption]"),
       lightboxClose: document.querySelector("[data-lightbox-close]"),
       lightboxDownload: document.querySelector("[data-lightbox-download]"),
       lightboxImage: document.querySelector("[data-lightbox-image]"),
@@ -289,15 +288,12 @@
   }
 
   function closeLightbox(state) {
-    const { lightbox, lightboxImage, lightboxCaption, lastFocusedElement } = state;
+    const { lightbox, lightboxImage, lastFocusedElement } = state;
     if (!lightbox || !lightboxImage) return;
 
     lightbox.hidden = true;
     lightboxImage.src = "";
     lightboxImage.alt = "";
-    if (lightboxCaption) {
-      lightboxCaption.textContent = "";
-    }
     if (state.lightboxDownload) {
       state.lightboxDownload.href = "#";
     }
@@ -306,7 +302,7 @@
   }
 
   function showGalleryImage(state, index) {
-    const { lightbox, lightboxImage, lightboxCaption, lightboxDownload, galleryItems } = state;
+    const { lightbox, lightboxImage, lightboxDownload, galleryItems } = state;
     if (!lightbox || !lightboxImage || galleryItems.length === 0 || index < 0) return;
 
     if (lightbox.hidden) {
@@ -326,10 +322,6 @@
       lightboxDownload.href = downloadUrl;
       lightboxDownload.setAttribute("aria-label", caption ? `Descarcă ${caption}` : "Descarcă fotografia");
     }
-    if (lightboxCaption) {
-      lightboxCaption.textContent = `${state.activeGalleryIndex + 1} / ${galleryItems.length} - ${caption}`;
-    }
-
     lightbox.hidden = false;
     document.body.classList.add("lightbox-open");
     state.lightboxClose?.focus();
