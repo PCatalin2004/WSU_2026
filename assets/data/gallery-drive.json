@@ -1,0 +1,36 @@
+{
+  "apiKey": "AIzaSyAorDWgsLQS_OZFqkhbTx5QgEES4fKW1II",
+  "fallbackToLocal": true,
+  "folders": [
+    {
+      "year": "2026",
+      "title": "WSU 2026",
+      "coverImage": {
+        "src": "assets/img/galerie/galerie-07-logo-pictat-wsu-large.webp",
+        "alt": "Copertă galerie WSU 2026"
+      },
+      "folderId": "1mr7H0jHox8XbWOHs-wUYF4aXtzHi0y0B",
+      "enabled": true
+    },
+    {
+      "year": "2025",
+      "title": "WSU 2025",
+      "coverImage": {
+        "src": "assets/img/galerie/galerie-10-parada-wsu-large.webp",
+        "alt": "Copertă galerie WSU 2025"
+      },
+      "folderId": "1HNV8obGVX6iLBSDJRQFs5C9gsQJO4KdC",
+      "enabled": true
+    },
+    {
+      "year": "2024",
+      "title": "WSU 2024",
+      "coverImage": {
+        "src": "assets/img/galerie/galerie-03-apus-wsu-large.webp",
+        "alt": "Copertă galerie WSU 2024"
+      },
+      "folderId": "",
+      "enabled": false
+    }
+  ]
+}

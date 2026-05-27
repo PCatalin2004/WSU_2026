@@ -14,21 +14,30 @@
   <link rel="apple-touch-icon" href="assets/img/icons/apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
   <link rel="stylesheet" href="assets/css/style.css?v=15">
-  <link rel="stylesheet" href="assets/css/pages/galerie.css?v=1">
+  <link rel="stylesheet" href="assets/css/pages/galerie.css?v=5">
 </head>
 <body data-page="galerie">
   <a class="skip-link" href="#main">Sari la conținut</a>
   <div data-site-header></div>
 
   <main id="main">
-    <section class="page-hero gallery-hero"><div class="hero-overlay"></div><div class="container page-hero-content"><p class="eyebrow">Galerie</p><h1>Momente păstrate din verile WSU.</h1></div></section>
-    <section class="section section-gradient"><div class="container"><div class="gallery-grid" data-gallery aria-live="polite"></div></div></section>
+    <section class="page-hero gallery-hero"><div class="hero-overlay"></div><div class="container page-hero-content"><p class="eyebrow">Galerie</p><h1>Momente păstrate<br>din verile WSU.</h1></div></section>
+    <section class="section section-gradient">
+      <div class="container">
+        <div class="gallery-toolbar" data-gallery-toolbar hidden>
+          <button class="gallery-back" type="button" data-gallery-back hidden><i data-lucide="arrow-left"></i>Înapoi la foldere</button>
+          <p class="gallery-status" data-gallery-status></p>
+        </div>
+        <div class="gallery-grid" data-gallery aria-live="polite"></div>
+      </div>
+    </section>
   </main>
   <div data-site-footer></div>
 
   <div class="lightbox" data-lightbox role="dialog" aria-modal="true" aria-label="Galerie foto" hidden>
     <button class="lightbox-nav lightbox-prev" type="button" aria-label="Imaginea precedentă" data-lightbox-prev><i data-lucide="chevron-left"></i></button>
     <button class="lightbox-close" type="button" aria-label="Închide galeria" data-lightbox-close><i data-lucide="x"></i></button>
+    <a class="lightbox-download" href="#" target="_blank" rel="noopener noreferrer" download aria-label="Descarcă fotografia" title="Descarcă fotografia" data-lightbox-download><i data-lucide="download"></i></a>
     <figure>
       <img loading="lazy" decoding="async" src="" alt="" data-lightbox-image>
       <figcaption data-lightbox-caption></figcaption>
@@ -37,7 +46,7 @@
   </div>
   <script src="assets/js/vendor/lucide.min.js" defer></script>
   <script src="assets/js/main.js?v=14" defer></script>
-  <script src="assets/js/pages/galerie.js?v=2" defer></script>
+  <script src="assets/js/pages/galerie.js?v=6" defer></script>
 </body>
 </html>
 
