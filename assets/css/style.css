@@ -772,10 +772,6 @@ html body :is(button, .button, .site-nav a, .nav-toggle, [role="button"]) :not(s
 html body :is(h1, h2, h3, h4, h5, h6, .gallery-folder-title) {
   font-family: var(--font-title) !important;
   font-weight: 700 !important;
-  text-align: justify !important;
-  text-justify: inter-word;
-  hyphens: auto;
-  overflow-wrap: break-word;
 }
 
 html body :is(p, li, dd, blockquote, figcaption, summary, .hero-lead, .team-intro, .gallery-folder-meta, .lightbox-caption) {
@@ -786,7 +782,7 @@ html body :is(p, li, dd, blockquote, figcaption, summary, .hero-lead, .team-intr
 }
 
 @media (max-width: 560px) {
-  html body :is(h1, h2, h3, h4, h5, h6, .gallery-folder-title, p, li, dd, blockquote, figcaption, summary, .hero-lead, .team-intro, .gallery-folder-meta, .lightbox-caption) {
+  html body :is(p, li, dd, blockquote, figcaption, summary, .hero-lead, .team-intro, .gallery-folder-meta, .lightbox-caption) {
     text-align: left !important;
   }
 }
