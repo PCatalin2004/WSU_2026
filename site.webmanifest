@@ -8,9 +8,9 @@
   "theme_color": "#087bd3",
   "icons": [
     {
-      "src": "assets/img/icons/favicon-32x32.png",
-      "sizes": "32x32",
-      "type": "image/png"
+      "src": "assets/img/brand/WSU_sigla.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
     },
     {
       "src": "assets/img/icons/apple-touch-icon.png",

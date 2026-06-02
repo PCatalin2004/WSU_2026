@@ -15,6 +15,9 @@
   --shadow: 0 16px 40px rgba(20, 38, 62, 0.14);
   --radius: 8px;
   --container: 1140px;
+  --font-regular: "Avenir Next LT Pro Regular", Arial, sans-serif;
+  --font-bold: "Avenir Next LT Pro Bold", Arial, sans-serif;
+  --font-title: "Kalam", cursive;
 }
 
 * {
@@ -29,8 +32,9 @@ body {
   margin: 0;
   color: var(--ink);
   background: var(--white);
-  font-family: "Open Sans", Arial, sans-serif;
+  font-family: var(--font-regular);
   line-height: 1.65;
+  font-synthesis: none;
   overflow-x: hidden;
 }
 
@@ -134,7 +138,7 @@ input {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  min-width: 110px;
+  min-width: 76px;
   color: var(--blue);
   font-size: 20px;
   font-weight: 800;
@@ -142,9 +146,10 @@ input {
 }
 
 .brand img {
-  width: 42px;
+  width: 76px;
   height: 42px;
   object-fit: contain;
+  filter: drop-shadow(0 1px 1px rgba(15, 32, 52, 0.55)) drop-shadow(0 3px 5px rgba(15, 32, 52, 0.18));
 }
 
 .site-nav {
@@ -229,6 +234,8 @@ input {
   position: relative;
   display: grid;
   align-items: center;
+  align-content: center;
+  justify-items: center;
   overflow: hidden;
   color: var(--white);
   background-position: center;
@@ -277,7 +284,6 @@ input {
 .hero h1,
 .page-hero h1 {
   margin: 8px 0 18px;
-  font-family: "Kalam", cursive;
   font-weight: 700;
   line-height: 1.05;
   text-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
@@ -367,27 +373,6 @@ input {
   width: 100%;
 }
 
-.scroll-cue {
-  position: absolute;
-  left: 50%;
-  bottom: 26px;
-  z-index: 2;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 46px;
-  height: 46px;
-  color: var(--white);
-  border: 2px solid rgba(255, 255, 255, 0.7);
-  border-radius: 50%;
-  transform: translateX(-50%);
-}
-
-.scroll-cue svg {
-  width: 28px;
-  height: 28px;
-}
-
 .section {
   padding: 92px 0;
 }
@@ -448,7 +433,6 @@ input {
 .split-grid h2 {
   margin: 0;
   color: var(--ink);
-  font-family: "Kalam", cursive;
   font-size: clamp(31px, 4vw, 46px);
   line-height: 1.18;
 }
@@ -550,6 +534,7 @@ input {
 }
 
 .site-footer {
+  --footer-logo-width: 130px;
   padding: 60px 0;
   background: #f2f4f8;
   border-top: 1px solid var(--line);
@@ -562,25 +547,50 @@ input {
   align-items: start;
 }
 
+.footer-grid > div:first-child {
+  width: var(--footer-logo-width);
+  text-align: center;
+}
+
 .site-footer h2 {
   margin: 0 0 16px;
   font-size: 21px;
 }
 
+.footer-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--footer-logo-width);
+}
+
 .footer-logo img {
-  width: 140px;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 
 .partner-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
+  display: grid;
+  grid-template-columns: repeat(2, var(--footer-logo-width));
+  gap: 18px 24px;
   align-items: center;
 }
 
+.partner-row a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--footer-logo-width);
+  max-width: 100%;
+  height: 72px;
+}
+
 .partner-row img {
-  width: 74px;
-  height: 74px;
+  width: var(--footer-logo-width);
+  max-width: 100%;
+  height: 72px;
   object-fit: contain;
 }
 
@@ -630,10 +640,6 @@ input {
 
   .brand {
     min-width: 0;
-  }
-
-  .brand span {
-    display: none;
   }
 
   .nav-toggle {
@@ -748,5 +754,39 @@ input {
     transition-duration: 0.001ms !important;
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
+  }
+}
+
+html body,
+html body :not(svg):not(path):not(use) {
+  font-family: var(--font-regular) !important;
+  font-weight: 400 !important;
+}
+
+html body :is(button, .button, .site-nav a, .nav-toggle, [role="button"], input[type="button"], input[type="submit"], input[type="reset"]),
+html body :is(button, .button, .site-nav a, .nav-toggle, [role="button"]) :not(svg):not(path):not(use) {
+  font-family: var(--font-bold) !important;
+  font-weight: 700 !important;
+}
+
+html body :is(h1, h2, h3, h4, h5, h6, .gallery-folder-title) {
+  font-family: var(--font-title) !important;
+  font-weight: 700 !important;
+  text-align: justify !important;
+  text-justify: inter-word;
+  hyphens: auto;
+  overflow-wrap: break-word;
+}
+
+html body :is(p, li, dd, blockquote, figcaption, summary, .hero-lead, .team-intro, .gallery-folder-meta, .lightbox-caption) {
+  text-align: justify !important;
+  text-justify: inter-word;
+  hyphens: auto;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 560px) {
+  html body :is(h1, h2, h3, h4, h5, h6, .gallery-folder-title, p, li, dd, blockquote, figcaption, summary, .hero-lead, .team-intro, .gallery-folder-meta, .lightbox-caption) {
+    text-align: left !important;
   }
 }

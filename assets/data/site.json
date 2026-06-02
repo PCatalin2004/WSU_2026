@@ -1,8 +1,7 @@
 {
   "brand": {
     "name": "West Summer University",
-    "shortName": "WSU",
-    "logo": "assets/img/brand/wsu-mark-180.webp",
+    "logo": "assets/img/brand/WSU_sigla.svg?v=20260602",
     "logoAlt": "West Summer University"
   },
   "navigation": [
@@ -31,34 +30,34 @@
       "href": "inscrie-te.html"
     }
   ],
-  "headerAction": {
-    "label": "Înscrie-te",
-    "href": "inscrie-te.html"
-  },
   "footer": {
     "projectLabel": "Proiect marca",
     "osut": {
       "href": "https://osut.ro/",
-      "logo": "assets/img/brand/osut-logo-black.webp",
+      "logo": "assets/img/brand/OSUT.svg",
       "alt": "OSUT"
     },
     "partnersLabel": "Parteneri",
     "partners": [
       {
-        "src": "assets/img/partners/partner-logo-uvt.webp",
-        "alt": "Partener WSU"
+        "src": "assets/img/partners/ANOSR.png",
+        "alt": "ANOSR",
+        "href": "https://anosr.ro/"
       },
       {
-        "src": "assets/img/partners/partner-logo-02.webp",
-        "alt": "Partener WSU"
+        "src": "assets/img/partners/CNE.png",
+        "alt": "Consiliul Elevilor",
+        "href": "https://consiliulelevilor.ro/"
       },
       {
-        "src": "assets/img/partners/partner-logo-03.webp",
-        "alt": "Partener WSU"
+        "src": "assets/img/partners/FITT.png",
+        "alt": "FITT",
+        "href": "https://fitt.ro/"
       },
       {
-        "src": "assets/img/partners/partner-logo-04.webp",
-        "alt": "Partener WSU"
+        "src": "assets/img/partners/UVT.png",
+        "alt": "Universitatea de Vest din Timisoara",
+        "href": "https://www.uvt.ro/"
       }
     ],
     "contactLabel": "Contact",

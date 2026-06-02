@@ -122,7 +122,6 @@ function renderHeader(site) {
     <header class="site-header" data-header>
       <a class="brand" href="index.html" aria-label="${escapeHtml(site.brand.name)}">
         <img loading="eager" fetchpriority="high" decoding="async" src="${escapeHtml(site.brand.logo)}" alt="${escapeHtml(site.brand.logoAlt)}">
-        <span>${escapeHtml(site.brand.shortName)}</span>
       </a>
       <button class="nav-toggle" type="button" aria-label="Deschide meniul" aria-expanded="false" data-nav-toggle>
         <i data-lucide="menu"></i>
@@ -135,7 +134,9 @@ function renderHeader(site) {
 }
 
 function renderPartnerLogo(partner) {
-  return `<img loading="lazy" decoding="async" src="${escapeHtml(partner.src)}" alt="${escapeHtml(partner.alt)}">`;
+  const logo = `<img loading="lazy" decoding="async" src="${escapeHtml(partner.src)}" alt="${escapeHtml(partner.alt)}">`;
+  if (!partner.href) return logo;
+  return `<a href="${escapeHtml(partner.href)}"${linkAttrs(partner.href)}>${logo}</a>`;
 }
 
 function socialIconPath(item) {
